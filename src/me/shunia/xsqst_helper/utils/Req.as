@@ -1,5 +1,5 @@
 /**
- * Created by Çì·å on 2015/5/18.
+ * Created by åº†å³° on 2015/5/18.
  */
 package me.shunia.xsqst_helper.utils {
     import flash.events.Event;

@@ -2,12 +2,12 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="xsqst_helper">
     <configurations>
-      <configuration name="xsqst_helper" target-platform="Desktop" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/out/production/xsqst_helper">
-        <dependencies target-player="11.1">
+      <configuration name="xsqst_helper" target-platform="Desktop" main-class="Main" output-file="xsqst_helper.swf" output-folder="$MODULE_DIR$/out">
+        <dependencies>
           <sdk name="flex_sdk_4.6.0" />
         </dependencies>
         <compiler-options />
-        <packaging-air-desktop package-file-name="Main" />
+        <packaging-air-desktop package-file-name="xsqst_helper" />
         <packaging-android />
         <packaging-ios />
       </configuration>

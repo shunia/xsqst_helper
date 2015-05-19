@@ -1,21 +1,27 @@
 package {
 
-import flash.display.Sprite;
-import flash.text.TextField;
+    import flash.display.Sprite;
 
-public class Main extends Sprite {
+import me.shunia.xsqst_helper.Service;
+import me.shunia.xsqst_helper.User;
+import me.shunia.xsqst_helper.utils.Timer;
 
-    private var _service:Service = null;
+    public class Main extends Sprite {
 
-    public function Main() {
-        var textField:TextField = new TextField();
-        textField.text = "Hello, World";
-        addChild(textField);
+        public function Main() {
+            Global.service = new Service();
+            Global.user = new User();
 
-        _service = new Service();
-        _service.on("sync_mine_dig_num", function (data:Object):void {
-            
-        });
+            var ui:UI = new UI();
+            addChild(ui);
+            Global.ui = ui;
+        }
+
+        private function use_food(foodid:int):void {
+            Global.service.on("use_food", function (data:Object):void {
+                Global.user.hunger += data.count;
+            }, foodid);
+        }
+
     }
-}
 }
