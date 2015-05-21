@@ -4,11 +4,11 @@
 package {
 import me.shunia.xsqst_helper.Service;
 import me.shunia.xsqst_helper.User;
+import me.shunia.xsqst_helper.ui.UI;
 
 public class Global {
 
-    public static var sid:String = "4kynptpzlpjy3cgaqzkznxqy";
-    public static var uid:String = "9201";
+    public static var version:String = "2.2.7";
 
     public static var service:Service = null;
     public static var user:User = null;

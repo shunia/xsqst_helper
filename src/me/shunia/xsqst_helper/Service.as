@@ -13,16 +13,22 @@ public class Service {
         public function on(s:String, c:Function, ...args):Service {
             var cls:Class = R[s];
             if (cls) {
-                var b:BS = args.length ? new cls(args) : new cls(),
-                    r:Req = new Req(b.url, b.isGet, b.data, function (data:String):void {
-                        try {
-                            var d:Object = JSON.parse(data);
-                            if (d && d.ret == 0)
-                                c.apply(null, [d.data]);
-                        } catch (e:Error) {
-                            trace(e);
-                        }
-                    });
+                var b:BS = args.length ? new cls(args) : new cls();
+
+                new Req().load(b.url, b.isGet, b.data, function (data:String):void {
+                    var d:Object = null;
+                    if (data.charAt(0) == "{") {    // json字符串
+                        d = JSON.parse(data);
+                        if (d && d.ret == 0)
+                            c.apply(null, [d.data]);
+                        else if (d && d.ret == 1)
+                            c.apply(null, [d]);
+//                            Global.ui.log("[SERVICE]", d.msg);
+                    } else {
+                        d = data as String;
+                        c.apply(null, [data]);
+                    }
+                });
             }
 
             return this;
@@ -51,6 +57,7 @@ public class Service {
         }
 
         public var R:Object = {
+            "get_conf": get_conf,
             "sync_1": sync_1,
             "sync_2": sync_2,
             "sync_3": sync_3,
@@ -66,6 +73,8 @@ public class Service {
             "sync_user_1": sync_user_1,
             "sync_user_2": sync_user_2,
             "sync_bag": sync_bag,
+            "sell_bag_gold": sell_bag_gold,
+            "sell_bag_exp": sell_bag_exp,
             "sync_mine": sync_mine,
             "sync_mine_nodes": sync_mine_nodes,
             "sync_mine_num": sync_mine_num,
@@ -76,10 +85,15 @@ public class Service {
             "sync_maze": sync_maze,
             "sync_hero": sync_hero,
             "sync_pvp": sync_pvp,
+            "sync_food": sync_food,
             "pvp_match": pvp_match,
             "pvp_reward": pvp_reward,
             "summon_hero": summon_hero,
-            "use_food": use_food
+            "use_food": use_food,
+            "get_box_reward": get_box_reward,
+            "sync_gift_1": sync_gift_1,
+            "sync_gift_2": sync_gift_2,
+            "send_gift": send_gift
         };
     }
 }
@@ -88,16 +102,16 @@ import flash.net.URLVariables;
 
 class BS {
 
-    protected var _sid:String = Global.sid;
-    protected var _uid:String = Global.uid;
+    protected var _sid:String = Global.user.token;
+    protected var _uid:String = Global.user.id;
     public var url:String = "http://s1.wangamemxwk.u77.com/service/main.ashx";
     public var isGet:Boolean = false;
     public var data:Object = null;
 
     public function BS(o:Object) {
         var v:URLVariables = new URLVariables();
-        v["sid"] = _sid;
-        v["userid"] = _uid;
+        if (_sid) v["sid"] = _sid;
+        if (_uid) v["userid"] = _uid;
         for (var k:String in o) {
             v[k] = o[k];
         }
@@ -110,6 +124,19 @@ class BS {
 
 }
 
+/**
+ * 获取游戏配置
+ */
+class get_conf extends BS {
+    public function get_conf(args:Array) {
+        super ({t:7, v:args[0], name:args[1]});
+        delete data["uid"];
+        url = "http://conf.wangamemxwk.u77.com/getconfig.ashx";
+        isGet = true;
+//        return base64 encoding strings
+    }
+}
+
 class sync_1 extends BS {
     public function sync_1() {
         super ({t:1101});
@@ -120,7 +147,11 @@ class sync_1 extends BS {
 class sync_2 extends BS {
     public function sync_2() {
         super ({t:1002});
-//        return {"lpj":12,"max":12,"a":4,"lpjsxsj":15833}
+//        return {
+//            "lpj":12,             // 可送礼次数
+//            "max":12,             // 送礼次数上限
+//            "a":4,
+//            "lpjsxsj":15833}
     }
 }
 
@@ -166,7 +197,7 @@ class sync_user_1 extends BS {
 //            "hhhj":0,
 //            "hlhj":0,
 //            "mazeboxmax":3,
-//            "lhsp":492,
+//            "lhsp":492,           // 荣誉碎片
 //            "newmsgcount":0,
 //            "blue_vip_level":0,
 //            "isqh":false,
@@ -487,6 +518,9 @@ class sync_mine_queue extends BS {           // 工坊挖矿队列
 }
 
 class mine_queue_harvest extends BS {
+    /**
+     * @param id int {sync_mine_queue}.id
+     */
     public function mine_queue_harvest(args:Array) {
         super ({t:2018, id:args[0]});
 //        return {
@@ -562,5 +596,53 @@ class pvp_match extends BS {
 class pvp_reward extends BS {
     public function pvp_reward(args:Array) {
         super ({t:6006, type:args[0]});
+    }
+}
+
+class sync_gift_1 extends BS {
+    public function sync_gift_1() {
+        super ({t:4003});
+//        return {
+//            "list":[{
+//                "id":7193,
+//                "sex":2,
+//                "figure":11000010,
+//                "username":"呜喵喵",
+//                "battlevalue":6722524,
+//                "mlv":500,
+//                "canAttack":true,
+//                "cangift":false,
+//                "areaid":1001,
+//                "ishx":1,
+//                "ftype":1,
+//                "tjcount":265,
+//                "qycount":5,
+//                "v1":0,
+//                "yellow_vip_level":0,
+//                "qqname":"呜喵喵"}],
+//            "isenabled":1}
+    }
+}
+
+class sync_gift_2 extends BS {
+    public function sync_gift_2() {
+        super ({t:4005});
+//        return [{
+//            "senderid":37,
+//            "sendername":"拼命玩三郎",
+//            "sendersex":1,
+//            "senderfigure":99000002,
+//            "id":2283464,
+//            "gifttype":3,
+//            "state":1,
+//            "type":2,
+//            "isnew":0}]
+    }
+}
+
+class send_gift extends BS {
+    public function send_gift(args:Array) {
+        super ({t:4004,id:args[0],gifttype:args[1]});
+//        return
     }
 }

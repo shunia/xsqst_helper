@@ -35,26 +35,35 @@ package me.shunia.xsqst_helper.utils {
             return _rp;
         }
 
-        public function tick():void {
-            onTick(null);
+        public function set cb(value:Function):void {
+            _cb = value;
         }
 
-        public function stop():void {
-            onComplete(null);
-        }
-
-        public function Timer(time:Number, rp:int, cb:Function, cp:Function = null) {
-            this.time = time;
-            this.rp = rp;
-            _cb = cb;
-            _cp = cp;
+        public function start():void {
             if (time > 0.02 && rp >= 0) {
                 _t = new flash.utils.Timer(this.time, this.rp);
                 _t.addEventListener(TimerEvent.TIMER, onTick);
                 _t.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
                 _t.start();
-                tick();             // tick at the beginning
+                onTick(null);             // tick at the beginning
             }
+        }
+
+        public function tick():void {
+            onTick(null);
+        }
+
+        public function stop():void {
+            _t.stop();
+            onComplete(null);
+        }
+
+        public function Timer(time:Number = 0, rp:int = 0, cb:Function = null, cp:Function = null) {
+            this.time = time;
+            this.rp = rp;
+            _cb = cb;
+            _cp = cp;
+            start();
         }
 
         private function onTick(e:Event):void {
