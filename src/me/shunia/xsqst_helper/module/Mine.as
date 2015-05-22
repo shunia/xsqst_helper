@@ -4,6 +4,7 @@
 package me.shunia.xsqst_helper.module {
 import flash.geom.Point;
 
+import me.shunia.xsqst_helper.Service;
 import me.shunia.xsqst_helper.utils.Time;
 
 public class Mine extends BaseModule{
@@ -53,7 +54,7 @@ public class Mine extends BaseModule{
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.batch(
+        Service.batch(
                 function ():void {
 //                    report(REPORT_TYPE_SYNC);
                     start();
@@ -88,7 +89,7 @@ public class Mine extends BaseModule{
 
     protected function startMap():void {
         if (map == null) {
-            Global.service.on("sync_mine_nodes",
+            Service.on("sync_mine_nodes",
                     function (data:Object):void {
                         lastPoint.x = data.px;
                         lastPoint.y = data.py;
@@ -102,7 +103,7 @@ public class Mine extends BaseModule{
     protected function startQueue():void {
         if (!itl_enabled) return;
 
-        Global.service.on("sync_mine_queue", function (data:Object):void {
+        Service.on("sync_mine_queue", function (data:Object):void {
             // 是否有正在进行的队列
             house.queue = data as Array;
             var l:int = house.queue.length;
@@ -111,7 +112,7 @@ public class Mine extends BaseModule{
                 // 有sid才说明是一个正在工作的队列，否则说明可以开始队列
                 if (o.hasOwnProperty("sid") && o["sid"] != 0) {
                     if (o.time == 0) {
-                        Global.service.on("mine_queue_harvest", function (data:Object):void {
+                        Service.on("mine_queue_harvest", function (data:Object):void {
                             for each (var i:Object in data.rewards) {
                                 // 加到用户身上
                                 Global.user.reward(i);
@@ -130,7 +131,7 @@ public class Mine extends BaseModule{
                 if (house.job[j] && house.job[j].cost <= digTime) {
                     // 有新开工的
                     l--;
-                    Global.service.on("mine_queue_add", function (data:Object):void {
+                    Service.on("mine_queue_add", function (data:Object):void {
                         // 通知
                         report(REPORT_TYPE_JOB, j);
                         // 工坊之后主动同步一次

@@ -12,7 +12,7 @@ public class Main extends Sprite {
 
         public function Main() {
             Global.user = new User();
-            Global.service = new Service();
+            Service = new Service();
 
             var ui:UI = new UI();
             addChild(ui);

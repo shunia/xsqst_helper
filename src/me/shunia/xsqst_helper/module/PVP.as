@@ -2,10 +2,8 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.module {
-import flash.utils.getTimer;
-
+import me.shunia.xsqst_helper.Service;
 import me.shunia.xsqst_helper.utils.Time;
-
 import me.shunia.xsqst_helper.utils.Timer;
 
 public class PVP extends BaseModule{
@@ -40,7 +38,7 @@ public class PVP extends BaseModule{
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.on("sync_pvp", function (data:Object):void {
+        Service.on("sync_pvp", function (data:Object):void {
             refresh_time = data.time;
             oponents = data.list;
             if (oponentsNotFight == null) {
@@ -76,7 +74,7 @@ public class PVP extends BaseModule{
             var i:int = 0;
             var f:Function = function ():void {
                 var o:Object = oponentsNotFight[i];
-                Global.service.on("pvp_match", function (data:Object):void {
+                Service.on("pvp_match", function (data:Object):void {
                     if (data.iswin == 1) _ft.time = FAIL_WAITE_INTERVAL;  // 如果失败，就把下一次pvp的时间延后
                     else {
                         // 胜利就打下一个
@@ -102,17 +100,17 @@ public class PVP extends BaseModule{
         // 奖励, 先尝试获取一次奖励，不管结论如何，都标记为奖励已获取
         if (rewardsReceived == null) {
             rewardsReceived = [];
-            Global.service.on("pvp_reward", function (data:Object):void {
+            Service.on("pvp_reward", function (data:Object):void {
                 rewardsReceived.push(1);
                 if (!(data.ret == 1))
                     report(REPORT_TYPE_REWARD, 1);
             }, 1);
-            Global.service.on("pvp_reward", function (data:Object):void {
+            Service.on("pvp_reward", function (data:Object):void {
                 rewardsReceived.push(1);
                 if (!(data.ret == 1))
                     report(REPORT_TYPE_REWARD, 4);
             }, 4);
-            Global.service.on("pvp_reward", function (data:Object):void {
+            Service.on("pvp_reward", function (data:Object):void {
                 rewardsReceived.push(1);
                 if (!(data.ret == 1))
                     report(REPORT_TYPE_REWARD, 9);

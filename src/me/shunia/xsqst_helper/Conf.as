@@ -2,12 +2,7 @@
  * Created by qingfenghuang on 2015/5/20.
  */
 package me.shunia.xsqst_helper {
-import flash.utils.ByteArray;
 import flash.utils.Dictionary;
-
-import me.shunia.xsqst_helper.utils.Base64;
-
-import mx.utils.Base64Decoder;
 
 public class Conf {
 
@@ -132,7 +127,7 @@ public class Conf {
     }
 
     protected function genTask(v:String, name:String, cb:Function):void {
-        Global.service.on("get_conf", cb, v, name);
+        Service.on("get_conf", cb, v, name);
     }
 
 }

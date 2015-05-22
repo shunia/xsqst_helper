@@ -59,7 +59,6 @@ public class SettingsPanel extends Panel {
 
     protected function update():void {
         var x:XML = describeType(PROPS);
-        trace(x..constant);
         for each (var i:XML in x..constant) {
             var k:String = i.@type == "String" ? PROPS[i.@name] : null;
             if (k && _cbs.hasOwnProperty(k))

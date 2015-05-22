@@ -2,6 +2,7 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.module {
+import me.shunia.xsqst_helper.Service;
 import me.shunia.xsqst_helper.utils.Timer;
 
 public class Maze extends BaseModule {
@@ -27,7 +28,7 @@ public class Maze extends BaseModule {
         if (!_obt) {
             _obt = new Timer(OPEN_BOX_TIME, 0, function ():void {
 
-                Global.service.on("get_box_reward", function (data:Object):void {
+                Service.on("get_box_reward", function (data:Object):void {
                     if (data.hasOwnProperty("ret") && data.ret == 1) {
 
                     } else {

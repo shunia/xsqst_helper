@@ -7,7 +7,7 @@ import flash.events.Event;
 
 import me.shunia.xsqst_helper.User;
 
-public class UI extends Sprite {
+public class UI extends Sprite implements ICtxCls {
 
     private var _log:LogPanel = null;
     private var _settings:SettingsPanel = null;
@@ -16,18 +16,6 @@ public class UI extends Sprite {
     private var _map:Map = null;
 
     public function UI() {
-        _e().on("userSynced", function (t:String, user:User):void {
-            if (!_user) {
-                _user = new UserStatusPanel(user);
-                _log = new LogPanel();
-                _settings = new SettingsPanel(user);
-                addChild(_user);
-                addChild(_settings);
-                addChild(_log);
-            }
-
-            layout();
-        });
     }
 
     protected function layout():void {
@@ -52,6 +40,27 @@ public class UI extends Sprite {
 
         _map = new Map(map);
     }
+	
+	protected var _ctx:Ctx = null;
+	public function set ctx(value:Ctx):void {
+		_ctx = value;
+		
+		_e(_ctx).on("userSynced", function (t:String, user:User):void {
+			if (!_user) {
+				_user = new UserStatusPanel(user);
+				_log = new LogPanel();
+				_settings = new SettingsPanel(user);
+				addChild(_user);
+				addChild(_settings);
+				addChild(_log);
+			}
+			
+			layout();
+		});
+	}
+	public function get ctx():Ctx {
+		return _ctx;
+	}
 
 }
 }

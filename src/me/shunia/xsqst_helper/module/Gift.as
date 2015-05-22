@@ -2,6 +2,8 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.module {
+	import me.shunia.xsqst_helper.Service;
+
 public class Gift extends BaseModule{
 
     public static const DIG:int = 3;
@@ -18,7 +20,7 @@ public class Gift extends BaseModule{
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.batch(
+        Service.batch(
                 function ():void {
                     start();
 
@@ -72,7 +74,7 @@ public class Gift extends BaseModule{
 
     protected function sendGift(f:Object):void {
         if (f.cangift) {
-            Global.service.on("send_gift", function (data:Object):void {
+            Service.on("send_gift", function (data:Object):void {
                 f.cangift = false;
                 report(REPORT_TYPE_GIFT_SENT, f.username);
             }, f.id, DIG);

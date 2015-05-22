@@ -3,14 +3,11 @@
  */
 package me.shunia.xsqst_helper {
 
-import flash.utils.getDefinitionByName;
-import flash.utils.getQualifiedClassName;
+	import me.shunia.xsqst_helper.utils.Req;
+	
+	public class Service {
 
-import me.shunia.xsqst_helper.utils.Req;
-
-public class Service {
-
-        public function on(s:String, c:Function, ...args):Service {
+        public static function on(s:String, c:Function, ...args):void {
             var cls:Class = R[s];
             if (cls) {
                 var b:BS = args.length ? new cls(args) : new cls();
@@ -30,11 +27,9 @@ public class Service {
                     }
                 });
             }
-
-            return this;
         }
 
-        public function batch(c:Function = null, ...args):void {
+        public static function batch(c:Function = null, ...args):void {
             var l:int = args.length,
                 apply:Function = function (a:Array):void {
                     var cp:Array = a.concat(),
@@ -55,9 +50,9 @@ public class Service {
                 };
             iter();
         }
-
-        public var R:Object = {
-            "get_conf": get_conf,
+		
+        public static const R:Object = {
+            "get_conf": {t:7, v:args[0], name:args[1]},
             "sync_1": sync_1,
             "sync_2": sync_2,
             "sync_3": sync_3,
@@ -93,7 +88,9 @@ public class Service {
             "get_box_reward": get_box_reward,
             "sync_gift_1": sync_gift_1,
             "sync_gift_2": sync_gift_2,
-            "send_gift": send_gift
+            "send_gift": send_gift,
+			"sync_moon_card": sync_moon_card,
+			"receive_moon_card": receive_moon_card
         };
     }
 }
@@ -192,10 +189,10 @@ class sync_user_1 extends BS {
 //            "jb":24820291,
 //            "xz":140,
 //            "yjjc":8380,
-//            "blhj":1,
-//            "zrhj":1,
-//            "hhhj":0,
-//            "hlhj":0,
+//            "blhj":1,				// 徽记
+//            "zrhj":1,				// 
+//            "hhhj":0,				// 辉煌
+//            "hlhj":0,				// 混乱
 //            "mazeboxmax":3,
 //            "lhsp":492,           // 荣誉碎片
 //            "newmsgcount":0,
@@ -645,4 +642,22 @@ class send_gift extends BS {
         super ({t:4004,id:args[0],gifttype:args[1]});
 //        return
     }
+}
+
+class sync_moon_card extends BS {
+	public function sync_moon_card() {
+		super({t:190202});
+//		return {
+//			"days":[22,22,0,0],				// 月卡剩余次数: 低级,中级,矿工卡
+//			"isget":[false,false,false]}	// 是否收了
+	}
+}
+
+class receive_moon_card extends BS {
+	/**
+	 * @param id int 月卡类型
+	 */	
+	public function receive_moon_card(args:Array) {
+		super({t:190201});
+	}
 }

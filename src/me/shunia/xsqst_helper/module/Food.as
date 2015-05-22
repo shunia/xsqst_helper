@@ -2,7 +2,7 @@
  * Created by qingfenghuang on 2015/5/20.
  */
 package me.shunia.xsqst_helper.module {
-import flash.utils.Timer;
+import me.shunia.xsqst_helper.Service;
 
 /**
  * {"id":18033,"foodid":1,"count":5},
@@ -66,7 +66,7 @@ public class Food extends BaseModule {
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.on("sync_food", function (data:Object):void {
+        Service.on("sync_food", function (data:Object):void {
             var a:Array = data as Array;
             foods = foods == null ? CONF : foods;
             for each (var item:Object in a) {
@@ -115,7 +115,7 @@ public class Food extends BaseModule {
     }
 
     public function useFood(foodid:int):void {
-        Global.service.on("use_food", function (data:Object):void {
+        Service.on("use_food", function (data:Object):void {
             if (data.ret == 1) {
                 if (_disabledFoods.indexOf(foodid) == -1) _disabledFoods.push(foodid);
             } else {

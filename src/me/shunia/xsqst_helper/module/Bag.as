@@ -2,6 +2,8 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.module {
+	import me.shunia.xsqst_helper.Service;
+
 public class Bag extends BaseModule{
 
     public var itl_enabled:Boolean = false;
@@ -10,7 +12,7 @@ public class Bag extends BaseModule{
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.on("sync_bag", function (data:Object):void {
+        Service.on("sync_bag", function (data:Object):void {
             init(data);
 
             _c(cb);
@@ -25,14 +27,14 @@ public class Bag extends BaseModule{
     }
 
     protected function oneKeyMoney():void {
-        Global.service.on("sell_bag_gold", function (data:Object):void {
+        Service.on("sell_bag_gold", function (data:Object):void {
             if (data.ret == 1) return;
             report(REPORT_TYPE_ONE_KEY_GOLD);
         });
     }
 
     protected function oneKeyExp():void {
-        Global.service.on("sell_bag_exp", function (data:Object):void {
+        Service.on("sell_bag_exp", function (data:Object):void {
             if (data.ret == 1) return;
             report(REPORT_TYPE_ONE_KEY_EXP);
         })

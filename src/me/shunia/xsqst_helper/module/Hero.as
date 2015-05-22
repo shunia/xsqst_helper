@@ -2,6 +2,8 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.module {
+	import me.shunia.xsqst_helper.Service;
+
 public class Hero extends BaseModule{
 
     public var total_power:int = 0;
@@ -13,7 +15,7 @@ public class Hero extends BaseModule{
     }
 
     override public function sync(cb:Function = null):void {
-        Global.service.on("sync_hero", function (data:Object):void {
+        Service.on("sync_hero", function (data:Object):void {
             total_power = data.battlevalue;
             fight_num = data.playingcount;
             fight_num_max = data.playingcountmax;

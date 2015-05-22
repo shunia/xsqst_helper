@@ -79,7 +79,7 @@ class PVPPanel extends Panel {
 
         add(label("竞时: " + Time.secToFull(d.refresh_time)));
         add(label("竞数: " + d.f_num));
-        add(label("竞剩: " + d.oponentsNotFight ? String(d.oponentsNotFight.length) : String(0)));
+        add(label("竞剩: " + (d.oponentsNotFight ? String(d.oponentsNotFight.length) : String(0))));
     }
 
     protected function label(t:String):Label {

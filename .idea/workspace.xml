@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AirPackageProjectParameters">
+    <option name="desktopPackageType" value="captive runtime bundle" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0915c533-931c-47ff-96f4-44ae4fad658f" name="Default" comment="working in progress,some bug still exists">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Base64.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/CheckBox.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/Conf.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Food.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Label.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Layout.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/LogPanel.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Panel.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/SettingsPanel.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Time.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UI.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UserStatusPanel.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config/settings.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xsqst_helper.xml" />
-      <change type="DELETED" beforePath="D:\work\dev\xsqst_helper\src\UI.as" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Bag.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Bag.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/BaseModule.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/BaseModule.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Gift.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Gift.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Global.as" afterPath="$PROJECT_DIR$/src/Global.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.as" afterPath="$PROJECT_DIR$/src/Main.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Maze.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Maze.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Mine.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Mine.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/PVP.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/PVP.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Req.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Req.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/Service.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/Service.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Summon.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Summon.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Timer.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Timer.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/User.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/User.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="0915c533-931c-47ff-96f4-44ae4fad658f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Base64.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Base64.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/CheckBox.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/CheckBox.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/Conf.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/Conf.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Food.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Food.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Label.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Label.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Layout.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Layout.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/LogPanel.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/LogPanel.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Panel.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/Panel.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/SettingsPanel.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/SettingsPanel.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Time.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Time.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UI.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UI.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UserStatusPanel.as" afterPath="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UserStatusPanel.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xsqst_helper.iml" afterPath="$PROJECT_DIR$/xsqst_helper.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xsqst_helper.xml" afterPath="$PROJECT_DIR$/xsqst_helper.xml" />
     </list>
     <ignored path="xsqst_helper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,16 +77,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Maze.as" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Maze.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Mine.as" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Mine.as">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,14 +110,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckBox.as" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckBox.as" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/CheckBox.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4125">
-              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="e#89#117#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xsqst_helper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xsqst_helper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.14174542">
+              <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -199,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Hero.as" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/BaseModule.as" />
-        <option value="$PROJECT_DIR$/xsqst_helper.xml" />
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/B64.as" />
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/utils/Base64.as" />
         <option value="$PROJECT_DIR$/src/Global.as" />
@@ -228,6 +213,7 @@
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/ui/UserStatusPanel.as" />
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/Mine.as" />
         <option value="$PROJECT_DIR$/src/me/shunia/xsqst_helper/module/PVP.as" />
+        <option value="$PROJECT_DIR$/xsqst_helper.xml" />
       </list>
     </option>
   </component>
@@ -259,29 +245,78 @@
             <id />
           </State>
           <State>
-            <id>Android</id>
-          </State>
-          <State>
             <id>Android Lint</id>
           </State>
           <State>
-            <id>Internationalization issues</id>
+            <id>Class metricsJava</id>
           </State>
           <State>
-            <id>Internationalization issuesJava</id>
+            <id>Class structureJava</id>
+          </State>
+          <State>
+            <id>Cloning issuesJava</id>
+          </State>
+          <State>
+            <id>Dependency issuesJava</id>
+          </State>
+          <State>
+            <id>Encapsulation issuesJava</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>ImportsJava</id>
+          </State>
+          <State>
+            <id>Inheritance issuesJava</id>
+          </State>
+          <State>
+            <id>J2ME issuesJava</id>
+          </State>
+          <State>
+            <id>JSP Inspections</id>
           </State>
           <State>
             <id>Java</id>
           </State>
           <State>
-            <id>Java language level migration aidsJava</id>
+            <id>Java EE issues</id>
+          </State>
+          <State>
+            <id>Javadoc issuesJava</id>
+          </State>
+          <State>
+            <id>Memory issuesJava</id>
+          </State>
+          <State>
+            <id>Method metricsJava</id>
+          </State>
+          <State>
+            <id>Naming conventionsJava</id>
+          </State>
+          <State>
+            <id>Packaging issuesJava</id>
+          </State>
+          <State>
+            <id>Performance issuesJava</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsGroovy</id>
+          </State>
+          <State>
+            <id>Probable bugsJava</id>
+          </State>
+          <State>
+            <id>Security issuesJava</id>
+          </State>
+          <State>
+            <id>Threading issuesJava</id>
+          </State>
+          <State>
+            <id>Visibility issuesJava</id>
           </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>Android</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -316,6 +351,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xsqst_helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xsqst_helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -324,12 +369,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../events/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/config" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
@@ -581,30 +626,30 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1096" height="1936" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32768053" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768053" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298687" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24351852" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38566738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298687" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38566738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -639,7 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -655,9 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding>
-            <element signature="e#83#112#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,9 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -675,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -702,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,9 +745,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#90#131#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -720,10 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="e#86#114#0" expanded="true" />
-            <element signature="e#1370#1400#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -749,9 +778,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
-          <folding>
-            <element signature="e#90#118#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -759,9 +786,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="e#90#114#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -822,15 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xsqst_helper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="36" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,9 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -848,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5504587">
           <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,9 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
-          <folding>
-            <element signature="e#83#112#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -874,7 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -882,9 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#86#128#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -892,9 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding>
-            <element signature="e#78#104#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,9 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-          <folding>
-            <element signature="e#89#117#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,7 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1800" column="29" selection-start-line="1800" selection-start-column="29" selection-end-line="1800" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -928,7 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -936,10 +931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#86#114#0" expanded="true" />
-            <element signature="e#1370#1400#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,7 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.375">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,7 +946,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
           <folding>
-            <element signature="e#87#124#0" expanded="true" />
+            <element signature="e#87#124#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -965,7 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="33" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -981,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="88" column="35" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,11 +1064,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/shunia/xsqst_helper/comps/CheckBox.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4125">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="e#89#117#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xsqst_helper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14174542">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

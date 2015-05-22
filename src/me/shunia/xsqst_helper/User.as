@@ -13,7 +13,7 @@ import me.shunia.xsqst_helper.module.PVP;
 import me.shunia.xsqst_helper.module.Summon;
 import me.shunia.xsqst_helper.utils.Timer;
 
-public class User {
+public class User implements ICtxCls {
 
     public static const SYNC_TIME:int = 10;
 
@@ -22,6 +22,9 @@ public class User {
     public var name:String = null;
     public var jb:int = 0;                  // 金币
     public var xz:int = 0;                  // 血钻
+	
+	public var row1:Object = null;
+	public var row2:Object = null;
 
     public var conf:Conf = null;
 
@@ -48,13 +51,14 @@ public class User {
         m_maze = new Maze().setContext(this) as Maze;
         _queue = [
             sync,
-            m_food.sync,
-            m_mine.sync,
-            m_summon.sync,
-            m_pvp.sync,
-            m_bag.sync,
-            m_maze.sync,
-            m_gift.sync];
+//            m_food.sync,
+//            m_mine.sync,
+            m_summon.sync
+//            m_pvp.sync,
+//            m_bag.sync,
+//            m_maze.sync,
+//            m_gift.sync
+		];
     }
 
     public function start():void {
@@ -67,7 +71,7 @@ public class User {
                                 var t:Function = q.shift();
                                 t(n);
                             } else {
-                                postSync();
+                                onAllSynced();
                             }
                         };
                 n.apply();
@@ -85,11 +89,15 @@ public class User {
     }
 
     public function sync(cb:Function = null):void {
-        Global.service.batch(
-                cb,
+        Service.batch(
+				function ():void {
+					onUserSynced();
+					if (cb != null) cb();
+				}
                 [
                     "sync_user_1",
                     function (d1:Object):void {
+						row1 = d1;
                         name = d1.username;
                         jb = d1.jb;
                         xz = d1.xz;
@@ -100,6 +108,7 @@ public class User {
                 [
                     "sync_user_2",
                     function (d2:Object):void {
+						row2 = d2;
                         m_food.hunger = d2.bzd;
                         m_hero.init(d2.mlist);
                     }
@@ -114,7 +123,7 @@ public class User {
     }
 
     protected function syncSys():void {
-        Global.service.batch(
+        Service.batch(
                 null,
                 ["sync_1", null],
 //                ["sync_2", null],
@@ -124,9 +133,13 @@ public class User {
                 ["sync_6", null]
         );
     }
+	
+	protected function onUserSynced():void {
+		_e(_ctx).emit("userSynced", this);
+	}
 
-    protected function postSync():void {
-        _e().emit("userSynced", this);
+    protected function onAllSynced():void {
+		_e(_ctx).emit("allSynced", this);
     }
 
     protected static const REPORT_TYPE_SYNC:int = 0;
@@ -147,6 +160,7 @@ public class User {
      * @param o
      * o.id -
      *  1  : 迷宫宝箱
+	 *  5  : 英雄
      *  23 : 金币
      *  27 : 勇气点数
      *  28 : 冠军点数
@@ -154,6 +168,14 @@ public class User {
     public function reward(o:*):void {
 
     }
+	
+	protected var _ctx:Ctx = null;
+	public function set ctx(value:Ctx):void {
+		_ctx = value;
+	}
+	public function get ctx():Ctx {
+		return _ctx;
+	}
 
 }
 }

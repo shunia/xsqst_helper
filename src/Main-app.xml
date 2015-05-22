@@ -8,11 +8,11 @@
 
      minimumPatchLevel - The minimum patch level of the AIR runtime required to run the application. Optional. -->
 
-<application xmlns="http://ns.adobe.com/air/application/3.1">
+<application xmlns="http://ns.adobe.com/air/application/3.4">
 
     <!-- A universally unique application identifier. Must be unique across all AIR applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>me.shunia.xsqst_helper</id>
+    <id>me.shunia.xsqsthelper</id>
 
     <!-- Used as the filename for the application. Required. -->
     <filename>像素骑士团大师</filename>
@@ -38,7 +38,7 @@
     <copyright>copyright 2015 by Shunia Huang</copyright>
 
     <!-- Publisher ID. Used if you're updating an application created prior to 1.5.3 -->
-    <publisherID>shuniahuang</publisherID>
+<!--     <publisherID></publisherID> -->
 
     <!-- Identifies the ActionScript extensions used by an application. -->
     <!--<extensions>
@@ -48,7 +48,7 @@
     <!-- Settings for the application's initial window. Required. -->
     <initialWindow>
         <!-- The main SWF or HTML file of the application. Required. -->
-        <content>SWF file name is set automatically at compile time</content>
+        <content>[SWF file name is set automatically at compile time]</content>
 
         <!-- The title of the main window. Optional. -->
         <!--<title></title>-->
