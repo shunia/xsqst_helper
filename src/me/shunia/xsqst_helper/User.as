@@ -4,6 +4,7 @@
 package me.shunia.xsqst_helper {
 
 import me.shunia.xsqst_helper.module.Bag;
+import me.shunia.xsqst_helper.module.BaseModule;
 import me.shunia.xsqst_helper.module.Food;
 import me.shunia.xsqst_helper.module.Gift;
 import me.shunia.xsqst_helper.module.Hero;
@@ -41,24 +42,6 @@ public class User implements ICtxCls {
     private var _ft:Timer = null;
 
     public function User() {
-        m_food = new Food().setContext(this) as Food;
-        m_bag = new Bag().setContext(this) as Bag;
-        m_mine = new Mine().setContext(this) as Mine;
-        m_summon = new Summon().setContext(this) as Summon;
-        m_pvp = new PVP().setContext(this) as PVP;
-        m_gift = new Gift().setContext(this) as Gift;
-        m_hero = new Hero().setContext(this) as Hero;
-        m_maze = new Maze().setContext(this) as Maze;
-        _queue = [
-            sync,
-//            m_food.sync,
-//            m_mine.sync,
-            m_summon.sync
-//            m_pvp.sync,
-//            m_bag.sync,
-//            m_maze.sync,
-//            m_gift.sync
-		];
     }
 
     public function start():void {
@@ -80,20 +63,12 @@ public class User implements ICtxCls {
         }
     }
 
-    public function init():void {
-        conf = new Conf(function ():void {          // 目前无法解开字符串
-            syncSys();
-
-            start();
-        });
-    }
-
     public function sync(cb:Function = null):void {
-        Service.batch(
+        _ctx.service.batch(
 				function ():void {
 					onUserSynced();
 					if (cb != null) cb();
-				}
+				}, 
                 [
                     "sync_user_1",
                     function (d1:Object):void {
@@ -123,7 +98,7 @@ public class User implements ICtxCls {
     }
 
     protected function syncSys():void {
-        Service.batch(
+        _ctx.service.batch(
                 null,
                 ["sync_1", null],
 //                ["sync_2", null],
@@ -153,7 +128,7 @@ public class User implements ICtxCls {
                     c += "    血钻 -> " + xz;
                 break;
         }
-        Global.ui.log(s, c);
+        _ctx.ui.log(s, c);
     }
 
     /**
@@ -162,6 +137,7 @@ public class User implements ICtxCls {
      *  1  : 迷宫宝箱
 	 *  5  : 英雄
      *  23 : 金币
+	 *  24 : 食品
      *  27 : 勇气点数
      *  28 : 冠军点数
      */
@@ -172,10 +148,40 @@ public class User implements ICtxCls {
 	protected var _ctx:Ctx = null;
 	public function set ctx(value:Ctx):void {
 		_ctx = value;
+		onCtxInited();
 	}
 	public function get ctx():Ctx {
 		return _ctx;
 	}
-
+	
+	public function onCtxInited():void {
+		m_food = initModule(Food) as Food;
+		m_bag = initModule(Bag) as Bag;
+		m_mine = initModule(Mine) as Mine;
+		m_summon = initModule(Summon) as Summon;
+		m_pvp = initModule(PVP) as PVP;
+		m_gift = initModule(Gift) as Gift;
+		m_hero = initModule(Hero) as Hero;
+		m_maze = initModule(Maze) as Maze;
+		_queue = [sync, 
+			m_food.sync, 
+			m_pvp.sync, 
+			m_bag.sync
+		];
+		
+		conf = new Conf(function ():void {          // 目前无法解开字符串
+			syncSys();
+			
+			start();
+		}, _ctx);
+	}
+	
+	protected function initModule(cls:Class):BaseModule {
+		var m:BaseModule = new cls();
+		m.ctx = this.ctx;
+//		_queue.push(m.sync);
+		return m;
+	}
+	
 }
 }

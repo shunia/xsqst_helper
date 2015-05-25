@@ -21,7 +21,7 @@ package me.shunia.xsqst_helper.module
 		protected function startMoodCard():void {
 			if (!_sync_moon_card) {
 				_sync_moon_card = true;
-				Service.on("sync_moon_card", function (data:Object):void {
+				_ctx.service.on("sync_moon_card", function (data:Object):void {
 					var a:Array = [];
 					var f:Function = function ():void {
 						report(REPORT_GET_MOON_CARDS, a.length);
@@ -44,7 +44,7 @@ package me.shunia.xsqst_helper.module
 							b.push(["receive_moon_card", null, a[k]]);
 						}
 						
-						Service.batch.apply(null, b);
+						_ctx.service.batch.apply(null, b);
 					}
 				});
 			}
@@ -64,7 +64,7 @@ package me.shunia.xsqst_helper.module
 					break;
 			}
 			if (c) 
-				Global.ui.log(s, c);
+				_ctx.ui.log(s, c);
 		}
 		
 	}

@@ -42,10 +42,10 @@ class UserPanel extends Panel {
     public function UserPanel(d:User) {
         layout.direction = "vertical";
 
-        add(label("名: " + d.name));
-        add(label("金: " + d.jb));
-        add(label("钻: " + d.xz));
-        add(label("食: " + d.m_food.hunger));
+        add(label("名字: " + d.name));
+        add(label("金币: " + d.jb));
+        add(label("血钻: " + d.xz));
+        add(label("饱食: " + d.m_food.hunger));
     }
 
     protected function label(t:String):Label {
@@ -61,6 +61,7 @@ class MinePanel extends Panel {
 
         add(label("镐时: " + Time.secToFull(d.refreshTime)));
         add(label("镐数: " + d.digTime));
+		add(label("黄人: " + d.monsterNum));
         for (var i:int = 0; i < d.house.queue.length; i ++) {
             add(label("坊时: " + Time.secToFull(d.house.queue[i].time)));
         }
@@ -78,8 +79,8 @@ class PVPPanel extends Panel {
         layout.direction = "vertical";
 
         add(label("竞时: " + Time.secToFull(d.refresh_time)));
-        add(label("竞数: " + d.f_num));
-        add(label("竞剩: " + (d.oponentsNotFight ? String(d.oponentsNotFight.length) : String(0))));
+        add(label("竞数: " + d.fNum));
+        add(label("竞胜: " + d.win));
     }
 
     protected function label(t:String):Label {

@@ -4,24 +4,13 @@ import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 
-import me.shunia.xsqst_helper.Service;
-import me.shunia.xsqst_helper.User;
-import me.shunia.xsqst_helper.ui.UI;
-
 public class Main extends Sprite {
 
         public function Main() {
-            Global.user = new User();
-            Service = new Service();
-
-            var ui:UI = new UI();
-            addChild(ui);
-            Global.ui = ui;
-
-            stage.scaleMode = StageScaleMode.NO_SCALE;
-            stage.align = StageAlign.TOP_LEFT;
-
-            Global.user.init();
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			
+			addChild(Ctx.getCtx().ui);
 
 //            new Req().download(
 //                "http://res.mxwk.90tank.com/Res1017/BraveRistOfficial.swf?2.2.7",

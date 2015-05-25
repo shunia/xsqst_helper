@@ -2,6 +2,7 @@ package
 {
 	import flash.utils.Dictionary;
 	
+	import me.shunia.xsqst_helper.Service;
 	import me.shunia.xsqst_helper.User;
 	import me.shunia.xsqst_helper.ui.UI;
 
@@ -12,7 +13,7 @@ package
 		private static var _ctxDict:Dictionary = new Dictionary();
 //		private static var _ctxRelationDict:Dictionary = new Dictionary();
 		
-		public static function getCtx(key:*):Ctx {
+		public static function getCtx(key:* = null):Ctx {
 //			var t:String = null;
 //			if (key) t = typeof key;
 //			
@@ -29,26 +30,31 @@ package
 //				if (_ctxRelationDict.hasOwnProperty(key)) return _ctxRelationDict[key];
 //			}
 			
-			
-			return new Ctx();
+			return new Ctx(key);
 		}
 		
 		public static function getAllCtx():Dictionary {
 			return _ctxDict;
 		}
 		
+		private var _id:String = "";
+		
 		public var version:String = "2.2.7";
+		public var sid:String = "4nwzaecyb0rqav1iannx1xtr";
+		public var uid:String = "9201";
+		
 		public var user:User = null;
 		public var ui:UI = null;
-		private var _id:String = "";
+		public var service:Service = null;
 		public function Ctx(id:String)
 		{
 			_id = id;
-			user = getIns(User);
-			ui = getIns(UI);
+			service = new Service(sid, uid);
+			user = g(User);
+			ui = g(UI);
 		}
 		
-		public function getIns(cls:Class):* {
+		public function g(cls:Class):* {
 			var c:ICtxCls = new cls() as ICtxCls;
 			if (c) c.ctx = this;
 			return c;

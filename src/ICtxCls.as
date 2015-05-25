@@ -6,5 +6,7 @@ package
 		function set ctx(value:Ctx):void;
 		function get ctx():Ctx;
 		
+		function onCtxInited():void;
+		
 	}
 }

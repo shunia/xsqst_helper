@@ -4,9 +4,6 @@
 package me.shunia.xsqst_helper.module {
 import flash.geom.Point;
 
-import me.shunia.xsqst_helper.Service;
-import me.shunia.xsqst_helper.utils.Time;
-
 public class Mine extends BaseModule{
 
     private static const CONF:Object = {
@@ -51,10 +48,11 @@ public class Mine extends BaseModule{
 
     public function Mine() {
         house = CONF;
+		_reportName = "[挖矿]";
     }
 
-    override public function sync(cb:Function = null):void {
-        Service.batch(
+    override protected function onSync(cb:Function = null):void {
+        _ctx.service.batch(
                 function ():void {
 //                    report(REPORT_TYPE_SYNC);
                     start();
@@ -89,13 +87,13 @@ public class Mine extends BaseModule{
 
     protected function startMap():void {
         if (map == null) {
-            Service.on("sync_mine_nodes",
+            _ctx.service.on("sync_mine_nodes",
                     function (data:Object):void {
                         lastPoint.x = data.px;
                         lastPoint.y = data.py;
                         map = data.list;
 
-//                        Global.ui.drawMap(map);
+//                        _ctx.ui.drawMap(map);
                     });
         }
     }
@@ -103,7 +101,7 @@ public class Mine extends BaseModule{
     protected function startQueue():void {
         if (!itl_enabled) return;
 
-        Service.on("sync_mine_queue", function (data:Object):void {
+        _ctx.service.on("sync_mine_queue", function (data:Object):void {
             // 是否有正在进行的队列
             house.queue = data as Array;
             var l:int = house.queue.length;
@@ -112,10 +110,10 @@ public class Mine extends BaseModule{
                 // 有sid才说明是一个正在工作的队列，否则说明可以开始队列
                 if (o.hasOwnProperty("sid") && o["sid"] != 0) {
                     if (o.time == 0) {
-                        Service.on("mine_queue_harvest", function (data:Object):void {
+                        _ctx.service.on("mine_queue_harvest", function (data:Object):void {
                             for each (var i:Object in data.rewards) {
                                 // 加到用户身上
-                                Global.user.reward(i);
+                                _ctx.user.reward(i);
                             }
                             report(REPORT_TYPE_HARVEST);
                         }, o.id);
@@ -131,7 +129,7 @@ public class Mine extends BaseModule{
                 if (house.job[j] && house.job[j].cost <= digTime) {
                     // 有新开工的
                     l--;
-                    Service.on("mine_queue_add", function (data:Object):void {
+                    _ctx.service.on("mine_queue_add", function (data:Object):void {
                         // 通知
                         report(REPORT_TYPE_JOB, j);
                         // 工坊之后主动同步一次
@@ -147,17 +145,17 @@ public class Mine extends BaseModule{
     protected static const REPORT_TYPE_HARVEST:int = 2;
     protected static const REPORT_TYPE_JOB_TIME:int = 3;
 
-    protected function report(type:int, ...args):void {
-        var s:String = "[挖矿]", c:String = "";
+    override protected function onReport(type:int, ...args):String {
+        var c:String = null;
         switch (type) {
-            case REPORT_TYPE_SYNC :
-                    c += "矿镐刷新时间 -> " + Time.secToFull(refreshTime);
-                    c += "    剩余次数 -> " + digTime;;
-                    c += "    小黄人等级 -> " + monsterLV;;
-                    c += "    小黄人数量 -> " + monsterNum;;
-                break;
+//            case REPORT_TYPE_SYNC :
+//                    c += "矿镐刷新时间 -> " + Time.secToFull(refreshTime);
+//                    c += "    剩余次数 -> " + digTime;
+//                    c += "    小黄人等级 -> " + monsterLV;
+//                    c += "    小黄人数量 -> " + monsterNum;
+//                break;
             case REPORT_TYPE_JOB :
-                    c += "工坊开始工作 -> " + house.job[args[0]].name;
+                    c += "工坊[" + house.job[args[0]].name + "]开始工作";
                 break;
             case REPORT_TYPE_HARVEST :
                     c += "工坊收获";
@@ -166,7 +164,7 @@ public class Mine extends BaseModule{
 //                    c += "工坊收获还剩 -> " + Time.secToFull(args[0]);
                 break;
         }
-        Global.ui.log(s, c);
+        return c;
     }
 
 }

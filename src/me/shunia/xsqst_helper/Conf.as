@@ -97,8 +97,10 @@ public class Conf {
     public static const STRENGTHEN:int = 9;
 
     public var all:Dictionary = new Dictionary();
+	protected var _ctx:Ctx = null;
 
-    public function Conf(onComplete:Function) {
+    public function Conf(onComplete:Function, ctx:Ctx) {
+		_ctx = ctx;
         onComplete();
         return;
 
@@ -118,7 +120,7 @@ public class Conf {
 //                        var s:String = Base64.decodeStr(data as String);
                         f(++ i);
                     };
-                genTask(Global.version, n, r);
+                genTask(_ctx.version, n, r);
             } else {
                 onComplete();
             }
@@ -127,7 +129,7 @@ public class Conf {
     }
 
     protected function genTask(v:String, name:String, cb:Function):void {
-        Service.on("get_conf", cb, v, name);
+        _ctx.service.on("get_conf", cb, v, name);
     }
 
 }

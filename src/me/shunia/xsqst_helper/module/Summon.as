@@ -3,7 +3,6 @@
  */
 package me.shunia.xsqst_helper.module {
 	
-	import me.shunia.xsqst_helper.Service;
 	import me.shunia.xsqst_helper.User;
 	import me.shunia.xsqst_helper.utils.Time;
 	
@@ -22,6 +21,7 @@ package me.shunia.xsqst_helper.module {
 		public var itl:Intelligence = null;
 	
 	    public function Summon() {
+			_reportName = "[招募]";
 			doors[Door.ZHAO_MU_SUO] = new Door(Door.ZHAO_MU_SUO);
 			doors[Door.YING_XIONG] = new Door(Door.YING_XIONG);
 			doors[Door.LV_DONG] = new Door(Door.LV_DONG);
@@ -42,7 +42,7 @@ package me.shunia.xsqst_helper.module {
 		}
 	
 	    override public function sync(cb:Function = null):void {
-	        Service.on("sync_sunmmon", function (data:Object):void {
+	        _ctx.service.on("sync_sunmmon", function (data:Object):void {
 	            refreshTime = data.time;
 	            var req:int = 0, scale:int = 0, d:Door = null;
 	            for each (var o:Object in data.list) {
@@ -65,7 +65,7 @@ package me.shunia.xsqst_helper.module {
 			for (var id:String in doors) {
 				d = doors[id];
 				if (itl.canSummon(d)) 
-					d.summon(
+					d.summon(_ctx, 
 						function (succ:Boolean, data:Object):void {
 							if (succ) _context.reward(data.rewards);
 							report(REPORT_TYPE_SUMMON, succ, data);
@@ -93,14 +93,14 @@ package me.shunia.xsqst_helper.module {
 	    protected static const REPORT_TYPE_SUMMON_GOLD_MAX:int = 2;
 	    protected static const REPORT_TYPE_TRY:int = 3;
 	
-	    protected function report(type:int, ...args):void {
-	        var s:String = "[招募]", c:String = "";
+	    override protected function onReport(type:int, ...args):String {
+	        var c:String = null;
 	        switch (type) {
 	            case REPORT_TYPE_SYNC :
-	                c += "刷新时间 -> " + Time.secToFull(refreshTime);
+	                c = "刷新时间 -> " + Time.secToFull(refreshTime);
 	                break;
 	            case REPORT_TYPE_SUMMON :
-					c += "招募" + args[0] ? "成功" : "失败";
+					c = "招募" + args[0] ? "成功" : "失败";
 	                    c += args[0] + " -> " + args[1];
 	                    c += "    消耗 -> " + args[2];
 	                break;
@@ -108,15 +108,14 @@ package me.shunia.xsqst_helper.module {
 //	                    c += "金币消耗溢出 -> 现有: " + _context.jb + " 需要: " + args[0] + " 限制: " + _itl_summon_gold_max;
 	                break;
 	            case REPORT_TYPE_TRY :
-	                    c += "尝试招募 -> " + doors[args[0]].name + " 消耗 -> " + doors[args[0]].req;
+	                    c = "尝试招募 -> " + doors[args[0]].name + " 消耗 -> " + doors[args[0]].req;
 	                break;
 	        }
-	        Global.ui.log(s, c);
+	        return c;
 	    }
 	
 	}
 }
-import me.shunia.xsqst_helper.Service;
 import me.shunia.xsqst_helper.User;
 
 class Intelligence {
@@ -228,14 +227,14 @@ class Door {
 	public function getNextReq():int {
 		return id == WAN_XIANG ? req : req * 2;
 	}
-	public function summon(cb:Function, t:int = 1):void {
-		Service.on("summon_hero", function (data:Object):void {
+	public function summon(ctx:Ctx, cb:Function, t:int = 1):void {
+		ctx.service.on("summon_hero", function (data:Object):void {
 			t --;
 			var succ:Boolean = true;
 			if (data.hasOwnProperty("ret") && data.ret == 1) succ = false;
 			if (succ && id != WAN_XIANG) num = num + 1;
 			cb(succ, data);
-			if (succ && t > 0) summon(cb, t);
+			if (succ && t > 0) summon(ctx, cb, t);
 		}, id);
 	}
 }

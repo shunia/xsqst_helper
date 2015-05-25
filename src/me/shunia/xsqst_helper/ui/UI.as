@@ -16,9 +16,13 @@ public class UI extends Sprite implements ICtxCls {
     private var _map:Map = null;
 
     public function UI() {
+		_log = new LogPanel();
+		addChild(_log);
     }
 
     protected function layout():void {
+		if (!stage) return;
+		
         _user.x = 0;
         _user.y = 0;
 
@@ -45,23 +49,24 @@ public class UI extends Sprite implements ICtxCls {
 	public function set ctx(value:Ctx):void {
 		_ctx = value;
 		
+		onCtxInited();
+	}
+	public function get ctx():Ctx {
+		return _ctx;
+	}
+	
+	public function onCtxInited():void {
 		_e(_ctx).on("userSynced", function (t:String, user:User):void {
 			if (!_user) {
 				_user = new UserStatusPanel(user);
-				_log = new LogPanel();
 				_settings = new SettingsPanel(user);
 				addChild(_user);
 				addChild(_settings);
-				addChild(_log);
 			}
 			
 			layout();
 		});
 	}
-	public function get ctx():Ctx {
-		return _ctx;
-	}
-
 }
 }
 
