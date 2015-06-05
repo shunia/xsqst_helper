@@ -23,20 +23,24 @@ public class Req {
             else
                 url += "?" + data.toString();
             _requst.url = url;
-            trace("[REQ]", "->", isGet ? "GET" : "POST", url, data["t"], isGet ? "" : data.toString());
-            _loader.addEventListener(Event.COMPLETE, function (e:Event):void {
-                trace("[REQ]", "<-", isGet ? "GET" : "POST", url, data["t"], _loader.data);
-                if (cb != null) cb.apply(null, [e.target.data]);
-            });
+			trace("[REQ]", "-->", isGet ? "GET" : "POST", url, data["t"], isGet ? "" : data.toString());
+			var f:Function = function (e:Event):void {
+				trace("[REQ]", "<--", isGet ? "GET" : "POST", url, data["t"], _loader.data);
+				if (cb != null) cb.apply(null, [e.target.data]);
+				_loader.removeEventListener(Event.COMPLETE, f);
+			};
+            _loader.addEventListener(Event.COMPLETE, f);
             _loader.load(_requst);
         }
 
         public function download(url:String, format:String, cb:Function):void {
             _requst.url = url;
             _loader.dataFormat = format;
-            _loader.addEventListener(Event.COMPLETE, function (e:Event):void {
-                if (cb != null) cb.apply(null, [e.target.data]);
-            });
+			var f:Function = function (e:Event):void {
+				if (cb != null) cb.apply(null, [e.target.data]);
+				_loader.removeEventListener(Event.COMPLETE, f);
+			};
+            _loader.addEventListener(Event.COMPLETE, f);
             _loader.load(_requst);
         }
 

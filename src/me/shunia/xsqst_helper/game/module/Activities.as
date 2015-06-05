@@ -1,4 +1,4 @@
-package me.shunia.xsqst_helper.module
+package me.shunia.xsqst_helper.game.module
 {
 	public class Activities extends BaseModule
 	{
@@ -11,10 +11,10 @@ package me.shunia.xsqst_helper.module
 		
 		public function Activities()
 		{
-			super();
+			_reportName = "[活动]";
 		}
 		
-		override public function sync(cb:Function=null):void {
+		override protected function onSync(cb:Function=null):void {
 			startMoodCard();
 		}
 		
@@ -56,15 +56,14 @@ package me.shunia.xsqst_helper.module
 		
 		protected static const REPORT_GET_MOON_CARDS:int = 1;
 		
-		protected function report(type:int, ...args):void {
-			var s:String = "[活动]", c:String = null;
+		override protected function onReport(type:int, ...args):String {
+			var c:String = null;
 			switch (type) {
 				case REPORT_GET_MOON_CARDS : 
 					c = "月卡已领取 -> " + args[0];
 					break;
 			}
-			if (c) 
-				_ctx.ui.log(s, c);
+			return c;
 		}
 		
 	}

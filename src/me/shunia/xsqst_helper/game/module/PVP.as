@@ -1,7 +1,7 @@
 /**
  * Created by qingfenghuang on 2015/5/19.
  */
-package me.shunia.xsqst_helper.module {
+package me.shunia.xsqst_helper.game.module {
 	import me.shunia.xsqst_helper.utils.Timer;
 	
 	public class PVP extends BaseModule{
@@ -11,16 +11,13 @@ package me.shunia.xsqst_helper.module {
 	    private static const FAIL_WAITE_INTERVAL:int = 5 * 60;
 	
 	    public var fNum:int = 0;
-	    public var refresh_time:int = 0;
+	    public var refreshTime:int = 0;
 	    public var oponents:Array = null;
 		public var raw:Object = null;
 		public var win:int = 0;
 	    private var _rt:Timer = null;
 	    private var _ft:Timer = null;
 	    private var _fightStarted:Boolean = false;
-	
-	    public var itl_enabled:Boolean = false;
-		private var _inited:Boolean = false;
 	
 	    //                "id":1668043,
 	    //                "sex":0,
@@ -37,7 +34,7 @@ package me.shunia.xsqst_helper.module {
 	    override protected function onSync(cb:Function = null):void {
 	        _ctx.service.on("sync_pvp", function (data:Object):void {
 				raw = data;
-	            refresh_time = data.time;
+	            refreshTime = data.time;
 	            oponents = data.list;
 				var i:int = win = 0;
 				while (i < oponents.length) {
@@ -53,9 +50,7 @@ package me.shunia.xsqst_helper.module {
 	        });
 	    }
 	
-	    override public function start():void {
-	        if (!itl_enabled) return;
-	
+	    override protected function onStart():void {
 //	        if (_rt == null) {
 //	            _rt = new Timer(refresh_time, 1, function ():void {
 //	                refresh_time = 0;
@@ -67,58 +62,47 @@ package me.shunia.xsqst_helper.module {
 	    }
 		
 		protected function startPVP():void {
+			if (!_fightStarted) {
+				_fightStarted = true;
+				autoPVP();
+			}
+		}
+		
+		protected function autoPVP():void {
 			if (!fNum) {
-				if (_ft) {
-					_ft.stop();
-					_ft = null;
-				}
+				_fightStarted = false;
+				report(REPORT_TYPE_NOT_ENOUGH_TIME);
 				return;
 			}
 			var o:Object = getNextToFight();
 			if (!o) {
-				if (_ft) {
-					_ft.stop();
-					_ft = null;
-				}
+				report(REPORT_TYPE_NO_OPONENT);
 				return;
 			}
 			
 			report(REPORT_TYPE_AUTO_FIGHT_START);
-			// 异步游标，用来记录当前打到第几个
-			var f:Function = function ():void {
-				_ctx.service.on("pvp_match", function (data:Object):void {
-					if (!data.iswin) 
-						_ft.time = FAIL_WAITE_INTERVAL;  // 如果失败，就把下一次pvp的时间延后
-					else {
-						// 胜利就打下一个
-						win ++;
-						_ft.time = MATCH_INTERVAL;
-					}
-					o.iswin = data.iswin;
-					report(REPORT_TYPE_PVP_RESULT, o, o.id, data);
-					startPVP();
-				}, o.id);
-			};
 			
-			if (!_ft) {
-				_ft = new Timer();
-				_ft.time = MATCH_INTERVAL;
-				_ft.rp = 1;
-				_ft.cb = f;
-			}
-			_ft.start();
+			_ctx.service.on("pvp_match", function (data:Object):void {
+				if (data.iswin) {
+					// 胜利就打下一个
+					win ++;
+				}
+				o.iswin = data.iswin;
+				report(REPORT_TYPE_PVP_RESULT, o, o.id, data);
+				new Timer(data.iswin ? MATCH_INTERVAL : FAIL_WAITE_INTERVAL, 1, null, autoPVP);
+			}, o.id);
 		}
 		
 		protected function getNextToFight():Object {
-			var b:Boolean = true, i:int = 0, o:Object = null;
-			while (b) {
-				o = oponents[i];
-				if (!o.iswin) {
+			var b:Boolean = true, i:int = 0;
+			while (b && i < oponents.length) {
+				if (!oponents[i].iswin) {
 					b = false;
+				} else {
+					i ++;
 				}
-				i ++;
 			}
-			return o;
+			return b ? null : oponents[i];
 		}
 		
 		protected function startReward():void {
@@ -142,6 +126,8 @@ package me.shunia.xsqst_helper.module {
 	    protected static const REPORT_TYPE_STOPPING:int = 2;
 	    protected static const REPORT_TYPE_REWARD:int = 3;
 		protected static const REPORT_TYPE_AUTO_FIGHT_START:int = 4;
+		protected static const REPORT_TYPE_NOT_ENOUGH_TIME:int = 5;
+		protected static const REPORT_TYPE_NO_OPONENT:int = 6;
 	
 	    override protected function onReport(type:int, ...args):String {
 	        var c:String = null, t1:Object = null;
@@ -149,7 +135,7 @@ package me.shunia.xsqst_helper.module {
 	            case REPORT_TYPE_PVP_RESULT :
 	                    var a:Object = args[0], i:int = args[1], data:Object = args[2];
 	                    c = "与[" + a.username + "](战力" + a.battlevalue + ")";
-	                    c += "的战斗结果[" + data.iswin ? "胜利" : "失败" + "]";
+	                    c += "的战斗结果[" + (data.iswin ? "胜利" : "失败") + "]";
 	                break;
 	            case REPORT_TYPE_STOPPING :
 	                    c = "战斗" + (fNum == 0 ? "次数耗尽" : "打完了");
@@ -163,6 +149,12 @@ package me.shunia.xsqst_helper.module {
 	                break;
 				case REPORT_TYPE_AUTO_FIGHT_START : 
 					c = "自动战斗开始";
+					break;
+				case REPORT_TYPE_NOT_ENOUGH_TIME : 
+					c = "战斗次数用尽";
+					break;
+				case REPORT_TYPE_NO_OPONENT : 
+					c = "没有剩余对手可供战斗";
 					break;
 	        }
 			return c;

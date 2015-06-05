@@ -1,4 +1,4 @@
-package
+package me.shunia.xsqst_helper.game
 {
 	public interface ICtxCls
 	{

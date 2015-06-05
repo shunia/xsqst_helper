@@ -22,7 +22,7 @@ package me.shunia.xsqst_helper.utils {
             }
         }
         public function get time():Number {
-            return _time;
+            return _time / 1000;
         }
 
         public function set rp(value:int):void {
@@ -40,8 +40,8 @@ package me.shunia.xsqst_helper.utils {
         }
 
         public function start():void {
-            if (time > 0.02 && rp >= 0) {
-                _t = new flash.utils.Timer(this.time, this.rp);
+            if (_time > 2 && rp >= 0) {
+                _t = new flash.utils.Timer(_time, _rp);
                 _t.addEventListener(TimerEvent.TIMER, onTick);
                 _t.addEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
                 _t.start();

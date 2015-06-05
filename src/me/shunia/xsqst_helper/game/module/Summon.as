@@ -1,9 +1,9 @@
 /**
  * Created by qingfenghuang on 2015/5/19.
  */
-package me.shunia.xsqst_helper.module {
+package me.shunia.xsqst_helper.game.module {
 	
-	import me.shunia.xsqst_helper.User;
+	import me.shunia.xsqst_helper.game.Avatar;
 	import me.shunia.xsqst_helper.utils.Time;
 	
 	public class Summon extends BaseModule{
@@ -17,7 +17,6 @@ package me.shunia.xsqst_helper.module {
 		 */	
 	    public var doors:Object = {};
 	
-	    public var itl_enabled:Boolean = false;
 		public var itl:Intelligence = null;
 	
 	    public function Summon() {
@@ -30,18 +29,18 @@ package me.shunia.xsqst_helper.module {
 			doors[Door.WAN_XIANG] = new Door(Door.WAN_XIANG);
 	    }
 		
-		override public function setContext(context:User):BaseModule {
-			itl = new Intelligence(context);
-			_e(context).on("userSynced", function ():void {
-				doors[Door.YING_XIONG].count = context.row1.blhj;
-				doors[Door.LV_DONG].count = context.row1.zrhj;
-				doors[Door.HUI_HUANG].count = context.row1.hhhj;
-				doors[Door.HUN_LUAN].count = context.row1.hlhj;
+		override public function onCtxInited():void {
+			super.onCtxInited();
+			itl = new Intelligence(_ctx.user);
+			_e(_ctx).on("userSynced", function ():void {
+				doors[Door.YING_XIONG].count = _ctx.user.row1.blhj;
+				doors[Door.LV_DONG].count = _ctx.user.row1.zrhj;
+				doors[Door.HUI_HUANG].count = _ctx.user.row1.hhhj;
+				doors[Door.HUN_LUAN].count = _ctx.user.row1.hlhj;
 			});
-			return super.setContext(context);
 		}
-	
-	    override public function sync(cb:Function = null):void {
+		
+	    override protected function onSync(cb:Function = null):void {
 	        _ctx.service.on("sync_sunmmon", function (data:Object):void {
 	            refreshTime = data.time;
 	            var req:int = 0, scale:int = 0, d:Door = null;
@@ -65,10 +64,11 @@ package me.shunia.xsqst_helper.module {
 			for (var id:String in doors) {
 				d = doors[id];
 				if (itl.canSummon(d)) 
-					d.summon(_ctx, 
-						function (succ:Boolean, data:Object):void {
-							if (succ) _context.reward(data.rewards);
-							report(REPORT_TYPE_SUMMON, succ, data);
+					d.summon(
+						_ctx, 
+						function (succ:Boolean, data:Object, id:String):void {
+							if (succ) _ctx.user.reward(data.rewards);
+							report(REPORT_TYPE_SUMMON, succ, getDoor(id));
 						}, 
 						itl.getMaxSummon(d)
 					);
@@ -79,9 +79,7 @@ package me.shunia.xsqst_helper.module {
 			return doors[id];
 		}
 	
-	    override public function start():void {
-	        if (!itl_enabled) return;
-			
+	    override protected function onStart():void {
 			if (itl.allow_daily_summon && !itl.daily_summon_started) {
 				dailySummon();
 				itl.daily_summon_started = true;
@@ -100,9 +98,7 @@ package me.shunia.xsqst_helper.module {
 	                c = "刷新时间 -> " + Time.secToFull(refreshTime);
 	                break;
 	            case REPORT_TYPE_SUMMON :
-					c = "招募" + args[0] ? "成功" : "失败";
-	                    c += args[0] + " -> " + args[1];
-	                    c += "    消耗 -> " + args[2];
+					c = "[" + args[1].name + "]招募[" + (args[0] ? "成功" : "失败") + "]";
 	                break;
 	            case REPORT_TYPE_SUMMON_GOLD_MAX :
 //	                    c += "金币消耗溢出 -> 现有: " + _context.jb + " 需要: " + args[0] + " 限制: " + _itl_summon_gold_max;
@@ -116,21 +112,23 @@ package me.shunia.xsqst_helper.module {
 	
 	}
 }
-import me.shunia.xsqst_helper.User;
+import me.shunia.xsqst_helper.game.Avatar;
+import me.shunia.xsqst_helper.game.Ctx;
 
 class Intelligence {
 	
 	public var allow_daily_summon:Boolean = true;
 	public var daily_summon_started:Boolean = false;
+	public var allow_summon_wanxiang:Boolean = false;
 	
 	private var _summon_gold_max:int = 10;	// 十次
 	private var _summon_hui_ji_max:int = 1;
 	private var _summon_wan_xiang_max:int = 0;
 	
 	protected var o:Object = {};
-	protected var _context:User = null;
+	protected var _context:Avatar = null;
 	
-	public function Intelligence(user:User) {
+	public function Intelligence(user:Avatar) {
 		_context = user;
 		o[Door.ZHAO_MU_SUO] = {max:_summon_gold_max};
 		o[Door.YING_XIONG] = {max:_summon_hui_ji_max};
@@ -169,14 +167,14 @@ class Intelligence {
 	
 	public function canSummon(door:Door):Boolean {
 		if (door.id == Door.ZHAO_MU_SUO) {
-			if (_context.jb < door.req || door.req >= summon_gold_max) {
+			if (_context.jb < door.req || door.req >= (door.baseReq * Math.pow(2, _summon_gold_max))) {
 				return false;
 			}
 		} else if (door.id == Door.WAN_XIANG) {
-			if (!_summon_wan_xiang_max || door.req > _context.xz) return false;
+			if (!allow_summon_wanxiang || door.req > _context.xz) return false;
 		} else {
 			// 需求的徽记少于设定的徽记数 && 有足够的徽记
-			if (door.req > _summon_hui_ji_max || door.count >= door.req) return false;
+			if (door.req < _summon_hui_ji_max || door.count < door.req) return false;
 		}
 		return true;
 	}
@@ -219,7 +217,7 @@ class Door {
 	
 	public function set num(value:int):void {
 		_num = value;
-		req = baseReq * (id == WAN_XIANG ? Math.pow(2, _num - 1) : 1);
+		req = baseReq * (id == WAN_XIANG ? 1 : Math.pow(2, _num - 1));
 	}
 	public function get num():int {
 		return _num;
@@ -233,7 +231,7 @@ class Door {
 			var succ:Boolean = true;
 			if (data.hasOwnProperty("ret") && data.ret == 1) succ = false;
 			if (succ && id != WAN_XIANG) num = num + 1;
-			cb(succ, data);
+			cb(succ, data, id);
 			if (succ && t > 0) summon(ctx, cb, t);
 		}, id);
 	}

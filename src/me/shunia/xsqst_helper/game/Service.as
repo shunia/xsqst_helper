@@ -1,9 +1,9 @@
 /**
  * Created by 庆峰 on 2015/5/18.
  */
-package me.shunia.xsqst_helper {
-
+package me.shunia.xsqst_helper.game {
 	import me.shunia.xsqst_helper.utils.Req;
+
 	
 	public class Service {
 		
@@ -60,7 +60,9 @@ package me.shunia.xsqst_helper {
 		
         public var R:Object = {
             "get_conf": 
-				Params.g('{"t":"7", "sid":"{sid}", "v":"{0}", "name":"{1}"}').url("http://conf.wangamemxwk.u77.com/getconfig.ashx"),
+				Params.g('{"t":"7", "sid":"{sid}", "v":"{0}", "name":"{1}"}').
+					url("http://conf.wangamemxwk.u77.com/getconfig.ashx").
+					post(false),
 				//        return base64 encoding strings
             "sync_1": 
 				Params.g('{"t":1101, "sid":"{sid}", "userid":"{uid}"}'),
@@ -259,7 +261,10 @@ package me.shunia.xsqst_helper {
 				Params.g('{"t":2017, "sid":"{sid}", "userid":"{uid}", "id":"{0}"}'),
             "sync_maze": 
 				Params.g('{"t":5001, "sid":"{sid}", "userid":"{uid}"}'),
-				//        return {"mazeid":200001,"list":[{"id":98139,"mazeid":100001,"isnew":0,"e1":1,"e2":1,"e3":0}]}
+//				        return {
+//							"mazeid":200001,
+//							"list":[
+//								{"id":98139,"mazeid":100001,"isnew":0,"e1":1,"e2":1,"e3":0}]}
             "sync_hero": 
 				Params.g('{"t":3001, "sid":"{sid}", "userid":"{uid}", "sortid":"{0}"}'),
 				//        return {"battlevalue":192146,"playingcount":20,"playingcountmax":20,"list":[{"id":418075,"mid":99000001,"exp":4655110,"wakeup":4,"equiplv":5,"isplaying":1,"isleader":1,"lv":16,"battlevalue":42428,"tplv":0,"isbj":0,"islock":0},{"id":461120,"mid":18000009,"exp":3546246,"wakeup":3,"equiplv":7,"isplaying":1,"isleader":0,"lv":38,"battlevalue":11799,"tplv":0,"isbj":0,"islock":0},{"id":484426,"mid":18000009,"exp":278231,"wakeup":2,"equiplv":7,"isplaying":1,"isleader":0,"lv":33,"battlevalue":3318,"tplv":0,"isbj":0,"islock":0},{"id":476677,"mid":18000055,"exp":1415594,"wakeup":3,"equiplv":6,"isplaying":1,"isleader":0,"lv":26,"battlevalue":9688,"tplv":0,"isbj":0,"islock":0},{"id":474123,"mid":13000009,"exp":1400566,"wakeup":3,"equiplv":4,"isplaying":1,"isleader":0,"lv":26,"battlevalue":8115,"tplv":0,"isbj":0,"islock":0},{"id":418116,"mid":17000005,"exp":4393089,"wakeup":3,"equiplv":6,"isplaying":1,"isleader":0,"lv":40,"battlevalue":10289,"tplv":0,"isbj":0,"islock":0},{"id":461074,"mid":17000013,"exp":3551292,"wakeup":3,"equiplv":6,"isplaying":1,"isleader":0,"lv":38,"battlevalue":9854,"tplv":0,"isbj":0,"islock":0},{"id":453888,"mid":17000017,"exp":3864193,"wakeup":3,"equiplv":5,"isplaying":1,"isleader":0,"lv":39,"battlevalue":9796,"tplv":0,"isbj":0,"islock":0},{"id":431715,"mid":17000022,"exp":4233918,"wakeup":3,"equiplv":6,"isplaying":1,"isleader":0,"lv":40,"battlevalue":10357,"tplv":0,"isbj":0,"islock":0},{"id":476671,"mid":17000022,"exp":1400184,"wakeup":3,"equiplv":0,"isplaying":1,"isleader":0,"lv":26,"battlevalue":7786,"tplv":0,"isbj":0,"islock":0},{"id":476672,"mid":17000008,"exp":1398805,"wakeup":3,"equiplv":0,"isplaying":1,"isleader":0,"lv":26,"battlevalue":7068,"tplv":0,"isbj":0,"islock":0},{"id":474120,"mid":16000010,"exp":1398434,"wakeup":3,"equiplv":0,"isplaying":1,"isleader":0,"lv":26,"battlevalue":5445,"tplv":0,"isbj":0,"islock":0},{"id":431710,"mid":16000010,"exp":4231171,"wakeup":3,"equiplv":0,"isplaying":1,"isleader":0,"lv":40,"battlevalue":6597,"tplv":0,"isbj":0,"islock":0},{"id":431714,"mid":11000006,"exp":4232298,"wakeup":2,"equiplv":0,"isplaying":1,"isleader":0,"lv":68,"battlevalue":2724,"tplv":0,"isbj":0,"islock":0},{"id":476675,"mid":18000001,"exp":1415371,"wakeup":3,"equiplv":5,"isplaying":1,"isleader":0,"lv":26,"battlevalue":9331,"tplv":0,"isbj":0,"islock":0},{"id":461119,"mid":11000035,"exp":3545970,"wakeup":3,"equiplv":7,"isplaying":1,"isleader":0,"lv":38,"battlevalue":11638,"tplv":0,"isbj":0,"islock":0},{"id":461297,"mid":18000022,"exp":3476683,"wakeup":3,"equiplv":7,"isplaying":1,"isleader":0,"lv":38,"battlevalue":11693,"tplv":0,"isbj":0,"islock":0},{"id":476674,"mid":11000035,"exp":1415267,"wakeup":3,"equiplv":3,"isplaying":1,"isleader":0,"lv":26,"battlevalue":8820,"tplv":0,"isbj":0,"islock":0},{"id":476676,"mid":17000016,"exp":1398610,"wakeup":2,"equiplv":0,"isplaying":1,"isleader":0,"lv":51,"battlevalue":2569,"tplv":0,"isbj":0,"islock":0},{"id":446370,"mid":11000030,"exp":3954022,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":67,"battlevalue":2546,"tplv":0,"isbj":0,"islock":0},{"id":481504,"mid":17000030,"exp":1036557,"wakeup":2,"equiplv":0,"isplaying":1,"isleader":0,"lv":48,"battlevalue":2831,"tplv":0,"isbj":0,"islock":0},{"id":452717,"mid":11000030,"exp":2921523,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":62,"battlevalue":2480,"tplv":0,"isbj":0,"islock":0},{"id":418117,"mid":11000016,"exp":2989833,"wakeup":2,"equiplv":2,"isplaying":0,"isleader":0,"lv":62,"battlevalue":3002,"tplv":0,"isbj":0,"islock":0},{"id":418105,"mid":11000018,"exp":2994404,"wakeup":2,"equiplv":1,"isplaying":0,"isleader":0,"lv":62,"battlevalue":2422,"tplv":0,"isbj":0,"islock":0},{"id":453868,"mid":11000018,"exp":2465658,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":59,"battlevalue":2361,"tplv":0,"isbj":0,"islock":0},{"id":431713,"mid":11000020,"exp":2887535,"wakeup":2,"equiplv":5,"isplaying":0,"isleader":0,"lv":62,"battlevalue":3258,"tplv":0,"isbj":0,"islock":0},{"id":453880,"mid":11000020,"exp":2465576,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":59,"battlevalue":2999,"tplv":0,"isbj":0,"islock":0},{"id":476678,"mid":17000015,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":242,"tplv":0,"isbj":0,"islock":0},{"id":466927,"mid":12000003,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":54,"tplv":0,"isbj":0,"islock":0},{"id":474118,"mid":12000007,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":40,"tplv":0,"isbj":0,"islock":0},{"id":447855,"mid":15000011,"exp":2722403,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":61,"battlevalue":2516,"tplv":0,"isbj":0,"islock":0},{"id":452028,"mid":16000001,"exp":572635,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":41,"battlevalue":1997,"tplv":0,"isbj":0,"islock":0},{"id":431711,"mid":16000008,"exp":2722430,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":61,"battlevalue":2666,"tplv":0,"isbj":0,"islock":0},{"id":453894,"mid":16000008,"exp":2463260,"wakeup":2,"equiplv":0,"isplaying":0,"isleader":0,"lv":59,"battlevalue":2637,"tplv":0,"isbj":0,"islock":0},{"id":466922,"mid":16000008,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":111,"tplv":0,"isbj":0,"islock":0},{"id":481502,"mid":12000007,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":40,"tplv":0,"isbj":0,"islock":0},{"id":481509,"mid":11000018,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":147,"tplv":0,"isbj":0,"islock":0},{"id":487275,"mid":11000001,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":58,"tplv":0,"isbj":0,"islock":0},{"id":487300,"mid":17000005,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":223,"tplv":0,"isbj":0,"islock":0},{"id":487301,"mid":15000001,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":72,"tplv":0,"isbj":0,"islock":0},{"id":487562,"mid":11000013,"exp":0,"wakeup":1,"equiplv":0,"isplaying":0,"isleader":0,"lv":1,"battlevalue":66,"tplv":0,"isbj":0,"islock":0}],"qycount":0}
@@ -364,6 +369,13 @@ package me.shunia.xsqst_helper {
 				//            "isnew":0}]
             "send_gift": 
 				Params.g('{"t":4004, "sid":"{sid}", "userid":"{uid}", "id":"{0}", "gifttype":"{1}"}'),
+			"receive_gift": 
+				Params.g('{"t":4006, "sid":"{sid}", "userid":"{uid}", "id":"{0}"}'),
+				//		return 
+				//			{"msg":"铜*2,","rewards":[{"type":8,"count":2,"rewardid":1000010}]}
+			"add_friend":
+				Params.g('{"t":4009, "sid":"{sid}", "userid":"{uid}", "name":"{0}"}'),
+				//		return
 			"sync_moon_card": 
 				Params.g('{"t":190202, "sid":"{sid}", "userid":"{uid}"}'),
 				//		return {
@@ -411,7 +423,24 @@ package me.shunia.xsqst_helper {
 				//                "y":7,
 				//                "type":1}]}
 			"mine_pick":
-				Params.g('{"t":2004, "sid":"{sid}", "userid":"{uid}", "x":"{0}", "y":"{1}", "cmd":"charge", "time":"{time}"}')
+				Params.g('{"t":2004, "sid":"{sid}", "userid":"{uid}", "x":"{0}", "y":"{1}", "cmd":"charge", "time":"{time}"}'),
+			"open_story": 
+				Params.g('{"t":5006, "sid":"{sid}", "userid":"{uid}", "type":"{0}"}'),
+				//		return {"time":0}
+			"start_story":
+				Params.g('{"t":5005, "sid":"{sid}", "userid":"{uid}", "type":"{0}", "isxz":"{1}"}')
+//				return {
+//					"eventtype":1,
+//					"report":{
+//						"leftMG":{},
+//						"rightMG":{},
+//						"skillList":[],
+//						"dodgeList":[false,true,false,false,false],
+//						"damageValue":[[0,-103628],[0,0],[0,-103628],[-32270,0],[0,-97351]],
+//						"xly":[],
+//						"skip":1},
+//					"iswin":true,
+//					"rewards":[{"type":25,"count":180,"rewardid":2700014}]}
         };
     }
 }
@@ -461,7 +490,7 @@ class Params {
 		s = rpl(s, "{time}", String(int(Math.random() * 1000000) + Math.random()));
 		if (_args && _args.length) {
 			for (var i:int = 0; i < _args.length; i ++) {
-				s = rpl(s, "{" + i + "}", _args[0]);
+				s = rpl(s, "{" + i + "}", _args[i]);
 			}
 		}
 		var json:Object = JSON.parse(s);

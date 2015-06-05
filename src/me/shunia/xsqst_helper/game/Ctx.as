@@ -1,10 +1,8 @@
-package
+package me.shunia.xsqst_helper.game
 {
 	import flash.utils.Dictionary;
 	
-	import me.shunia.xsqst_helper.Service;
-	import me.shunia.xsqst_helper.User;
-	import me.shunia.xsqst_helper.ui.UI;
+	import me.shunia.xsqst_helper.game.ui.OverView;
 
 	public class Ctx
 	{
@@ -30,7 +28,7 @@ package
 //				if (_ctxRelationDict.hasOwnProperty(key)) return _ctxRelationDict[key];
 //			}
 			
-			return new Ctx(key);
+			return ctx;
 		}
 		
 		public static function getAllCtx():Dictionary {
@@ -39,19 +37,19 @@ package
 		
 		private var _id:String = "";
 		
-		public var version:String = "2.2.7";
+		public var version:String = "2.2.11";
 		public var sid:String = "4nwzaecyb0rqav1iannx1xtr";
 		public var uid:String = "9201";
 		
-		public var user:User = null;
-		public var ui:UI = null;
+		public var user:Avatar = null;
+		public var ui:OverView = null;
 		public var service:Service = null;
 		public function Ctx(id:String)
 		{
 			_id = id;
 			service = new Service(sid, uid);
-			user = g(User);
-			ui = g(UI);
+			user = g(Avatar);
+			ui = g(OverView);
 		}
 		
 		public function g(cls:Class):* {
