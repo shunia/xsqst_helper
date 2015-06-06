@@ -14,7 +14,7 @@ public class Main extends Sprite {
 
         _service = new Service();
         _service.on("sync_mine_dig_num", function (data:Object):void {
-            
+
         });
     }
 }
