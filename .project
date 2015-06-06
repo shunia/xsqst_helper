@@ -24,12 +24,20 @@
 		<link>
 			<name>[source path] context-src</name>
 			<type>2</type>
+<<<<<<< HEAD
 			<location>F:/projects/context/src</location>
+=======
+			<location>D:/work/dev/context/src</location>
+>>>>>>> 33406cda6a65b1c5ecad3996a8e37a863796e6a6
 		</link>
 		<link>
 			<name>[source path] events-src</name>
 			<type>2</type>
+<<<<<<< HEAD
 			<location>F:/projects/events/src</location>
+=======
+			<location>D:/work/dev/events/src</location>
+>>>>>>> 33406cda6a65b1c5ecad3996a8e37a863796e6a6
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -1,0 +1,10 @@
+{
+  "gift": true,
+  "PVP": true,
+  "mine": true,
+  "maze": true,
+  "bag": true,
+  "summon": true,
+  "food": true,
+  "activities": false
+}
