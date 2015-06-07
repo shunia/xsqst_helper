@@ -1,79 +1,58 @@
 package me.shunia.xsqst_helper.comps
 {
-	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
-
+	
 	public class Button extends Sprite
 	{
 		
-		protected var _label:String = null;
-		protected var _labelDisplay:DisplayObject = null;
-		protected var _states:Dictionary = null;
-		protected var _content:* = null;
-		protected var _w:int = 0;
-		protected var _h:int = 0;
+		protected var _props:Dictionary = null;
+		protected var _keySequence:Array = [];
+		protected var _labelDisplay:Label = null;
 		
-		public function Button(content:*)
+		public function Button()
 		{
 			super();
-			this.content = content;
+			_props = new Dictionary();
+			_keySequence = [];
 		}
 		
-		public function set content(value:*):void {
-			if (!value) return;
-			_content = value;
-			clear();
-			create();
+		public function setProp(k:int, value:*):Button {
+			_props[k] = value;
+			_keySequence.push(k);
+			return this;
 		}
 		
-		protected function clear():void {
-			
-		}
-		
-		protected function create():void {
-			var t:String = typeof _content;
-			if (t == "object") {
-				if (t is Class) {
-					
-				} else if (t is MovieClip) {
-					
-				} else if (t is DisplayObject) {
-					
-				}
-			} else {
-				switch (t) {
-					case "string" : 
-						// 文字按钮,使用底色按钮形式
-						break;
-					case "class" : 
-						break;
-					case "displayObject" : 
-						break;
-				}
+		public function update():void {
+			_keySequence.sort(Array.NUMERIC);
+			var k:int = 0, v:* = null;
+			while (_keySequence.length) {
+				k = _keySequence.shift();
+				v = _props[k];
+				delete _props[k];
+				updateProp(k, v);
 			}
 		}
 		
-		protected function updateDisplay():void {
-			
+		protected function updateProp(k:int, value:*):void {
+			switch (k) {
+				case P_WIDTH : 
+					break;
+				case P_HEIGHT : 
+					break;
+			}
 		}
 		
-		override public function set width(value:Number):void {
-			_w = value;
-			updateDisplay();
-		}
-		override public function get width():Number {
-			return _w;
-		}
+		public static const P_LABEL:int = 8;
+		public static const P_LABEL_COLOR:int = 7;
+		public static const P_FRAME_1:int = 6;
+		public static const P_FRAME_2:int = 5;
+		public static const P_FRAME_3:int = 4;
+		public static const P_FRAMES:int = 3;
+		public static const P_WIDTH:int = 2;
+		public static const P_HEIGHT:int = 1;
 		
-		override public function set height(value:Number):void {
-			_h = value;
-			updateDisplay();
-		}
-		override public function get height():Number {
-			return _h;
-		}
+		
 		
 	}
 }
