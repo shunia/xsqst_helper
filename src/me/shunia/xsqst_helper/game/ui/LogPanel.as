@@ -14,6 +14,8 @@ public class LogPanel extends Panel {
         super();
 
         _log = new Label(false);
+		_log.multiline = true;
+		_log.wordWrap = true;
         _log.width = 300;
         _log.height = 300;
         addChild(_log);

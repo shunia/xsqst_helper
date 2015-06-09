@@ -8,14 +8,12 @@ package me.shunia.xsqst_helper.comps {
 	
 	public class Label extends TextField {
 	    public function Label(autoResize:Boolean = true) {
-	        this.text = "";
 	        if (autoResize) this.autoSize = TextFieldAutoSize.LEFT;
-	        this.multiline = true;
-	        this.wordWrap = true;
 	        var fmt:TextFormat = new TextFormat();
 	        fmt.color = 0;
 	        fmt.font = "Microsoft YaHei";
 	        this.defaultTextFormat = fmt;
+			this.text = "";
 	    }
 	}
 }
