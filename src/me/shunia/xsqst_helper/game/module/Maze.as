@@ -9,7 +9,7 @@ package me.shunia.xsqst_helper.game.module {
 		public var story:Story = null;
 		public var maze:MazeData = null;
 		public var raw:Object = null;
-	
+		
 	    public function Maze() {
 			_reportName = "[关卡]";
 			maze = new MazeData();
@@ -18,6 +18,10 @@ package me.shunia.xsqst_helper.game.module {
 	    }
 		
 	    override protected function onSync(cb:Function = null):void {
+			box.time = _ctx.game.row2.boxtime;
+			box.count = _ctx.game.row2.boxcount;
+			story.data = _ctx.game.row2;
+			
 			_ctx.service.on("sync_maze", function (data:Object):void {
 				raw = data;
 				maze.id = data.mazeid;
@@ -36,7 +40,7 @@ package me.shunia.xsqst_helper.game.module {
             _ctx.service.on("get_box_reward", function (data:Object):void {
                 if (data.ret != 1) {
                     for each (var i:Object in data.rewards) {
-                        _ctx.user.reward(i);
+                        _ctx.game.reward(i);
                     }
 					
                     report(REPORT_TYPE_OPEN_BOX, data.rewards);

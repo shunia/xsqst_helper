@@ -1,11 +1,9 @@
 package me.shunia.xsqst_helper.view
 {
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import me.shunia.xsqst_helper.Assets;
+	import me.shunia.xsqst_helper.comps.Button;
 	import me.shunia.xsqst_helper.comps.Panel;
 	
 	public class Left_tools extends Sprite
@@ -17,23 +15,30 @@ package me.shunia.xsqst_helper.view
 		{
 			super();
 			_p = new Panel();
-			_p.layout.hGap = 10;
 			_p.layout.direction = "vertical";
 			addChild(_p);
 			
-			var i:DisplayObject = new Assets.ADD_ICON();
-			i.addEventListener(MouseEvent.CLICK, onLogin);
-			_p.add(i);
-			i = new Assets.TOOL_ICON();
-			i.addEventListener(MouseEvent.CLICK, onConfig);
-			_p.add(i);
+			var btn:Button = new Button()
+				.setProp(Button.P_H_GAP, 0)
+				.setProp(Button.P_V_GAP, 0)
+				.setProp(Button.P_FRAME_UP, new Assets.ADD_ICON())
+				.update();
+			btn.on(onLogin);
+			_p.add(btn);
+			btn = new Button()
+				.setProp(Button.P_H_GAP, 0)
+				.setProp(Button.P_V_GAP, 0)
+				.setProp(Button.P_FRAME_UP, new Assets.TOOL_ICON())
+				.update();
+			_p.add(btn);
+			btn.on(onConfig);
 		}
 		
-		protected function onConfig(event:Event):void {
+		protected function onConfig():void {
 			
 		}
 		
-		protected function onLogin(event:Event):void {
+		protected function onLogin():void {
 			_e().emit("playerLogin");
 		}
 	}

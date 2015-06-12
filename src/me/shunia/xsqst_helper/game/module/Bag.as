@@ -4,7 +4,7 @@
 package me.shunia.xsqst_helper.game.module {
 
 	public class Bag extends BaseModule {
-	
+		
 		private static const INIT_BLOCK_NUM:int = 8;
 		
 		public var itemNum:int = 0;
@@ -29,7 +29,7 @@ package me.shunia.xsqst_helper.game.module {
 	            _c(cb);
 	        });
 	    }
-	
+		
 	    override protected function onStart():void {
 			oneKeySell();
 	    }

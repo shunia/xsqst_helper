@@ -64,6 +64,8 @@ package me.shunia.xsqst_helper.game.module {
 	    }
 	
 	    override protected function onSync(cb:Function = null):void {
+			hunger = _ctx.game.row2.bzd;
+			
 	        _ctx.service.on("sync_food", function (data:Object):void {
 	            var a:Array = data as Array;
 	            foods = foods == null ? CONF : foods;

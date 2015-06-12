@@ -2,13 +2,15 @@ package {
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.events.NativeWindowBoundsEvent;
 	import flash.events.UncaughtErrorEvent;
 	import flash.system.System;
 	import flash.ui.Keyboard;
 	
 	import me.shunia.context.ContextualStage;
-	import me.shunia.xsqst_helper.player.Player;
-	import me.shunia.xsqst_helper.player.PlayerManager;
+	import me.shunia.xsqst_helper.Player;
+	import me.shunia.xsqst_helper.game.GameData;
+	import me.shunia.xsqst_helper.game.context.Ctx;
 	import me.shunia.xsqst_helper.view.S;
 	
 	public class Main extends ContextualStage {
@@ -22,9 +24,12 @@ package {
 			
 //			new Updater("app:/update_conf.xml");
 			
-			var pm:PlayerManager = new PlayerManager();
-			_e(pm).on("playerAdded", onAddPlayer);
-			pm.init();
+			_e().on("gameDataAdded", onAddGameData);
+			Player.current().init();
+			
+			stage.nativeWindow.addEventListener(NativeWindowBoundsEvent.RESIZE, function (e:*):void {
+				_e().emit("resize", stage);
+			});
 			
 //            new Req().download(
 //                "http://res.mxwk.90tank.com/Res1017/BraveRistOfficial.swf?2.2.7",
@@ -64,8 +69,10 @@ package {
 			_error += e.toString() + "\n";
 		}
 		
-		protected function onAddPlayer(p:Player):void {
-			
+		protected function onAddGameData(d:GameData):void {
+			var ctx:Ctx = Ctx.getCtx();
+			ctx.init(d);
+			_e().emit("initCtx", ctx);
 		}
 
     }

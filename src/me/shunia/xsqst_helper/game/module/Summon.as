@@ -3,7 +3,6 @@
  */
 package me.shunia.xsqst_helper.game.module {
 	
-	import me.shunia.xsqst_helper.game.Avatar;
 	import me.shunia.xsqst_helper.utils.Time;
 	
 	public class Summon extends BaseModule{
@@ -31,12 +30,12 @@ package me.shunia.xsqst_helper.game.module {
 		
 		override public function onCtxInited():void {
 			super.onCtxInited();
-			itl = new Intelligence(_ctx.user);
+			itl = new Intelligence(_ctx.game);
 			_e(_ctx).on("userSynced", function ():void {
-				doors[Door.YING_XIONG].count = _ctx.user.row1.blhj;
-				doors[Door.LV_DONG].count = _ctx.user.row1.zrhj;
-				doors[Door.HUI_HUANG].count = _ctx.user.row1.hhhj;
-				doors[Door.HUN_LUAN].count = _ctx.user.row1.hlhj;
+				doors[Door.YING_XIONG].count = _ctx.game.row1.blhj;
+				doors[Door.LV_DONG].count = _ctx.game.row1.zrhj;
+				doors[Door.HUI_HUANG].count = _ctx.game.row1.hhhj;
+				doors[Door.HUN_LUAN].count = _ctx.game.row1.hlhj;
 			});
 		}
 		
@@ -67,7 +66,7 @@ package me.shunia.xsqst_helper.game.module {
 					d.summon(
 						_ctx, 
 						function (succ:Boolean, data:Object, id:String):void {
-							if (succ) _ctx.user.reward(data.rewards);
+							if (succ) _ctx.game.reward(data.rewards);
 							report(REPORT_TYPE_SUMMON, succ, getDoor(id));
 						}, 
 						itl.getMaxSummon(d)
@@ -112,8 +111,8 @@ package me.shunia.xsqst_helper.game.module {
 	
 	}
 }
-import me.shunia.xsqst_helper.game.Avatar;
-import me.shunia.xsqst_helper.game.Ctx;
+import me.shunia.xsqst_helper.game.module.Game;
+import me.shunia.xsqst_helper.game.context.Ctx;
 
 class Intelligence {
 	
@@ -126,9 +125,9 @@ class Intelligence {
 	private var _summon_wan_xiang_max:int = 0;
 	
 	protected var o:Object = {};
-	protected var _context:Avatar = null;
+	protected var _context:Game = null;
 	
-	public function Intelligence(user:Avatar) {
+	public function Intelligence(user:Game) {
 		_context = user;
 		o[Door.ZHAO_MU_SUO] = {max:_summon_gold_max};
 		o[Door.YING_XIONG] = {max:_summon_hui_ji_max};

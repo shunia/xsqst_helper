@@ -31,6 +31,8 @@ package me.shunia.xsqst_helper.game.module {
 	    }
 	
 	    override protected function onSync(cb:Function = null):void {
+			init(_ctx.game.row2.mlist);
+			
 	        _ctx.service.on("sync_hero", function (data:Object):void {
 	            totalPower = data.battlevalue;
 	            fightNum = data.playingcount;

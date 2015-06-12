@@ -62,7 +62,7 @@ package me.shunia.xsqst_helper.game.module {
 	    }
 		
 		protected function startPVP():void {
-			if (!_fightStarted) {
+			if (!_fightStarted && fNum) {
 				_fightStarted = true;
 				autoPVP();
 			}

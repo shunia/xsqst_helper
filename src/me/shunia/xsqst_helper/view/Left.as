@@ -2,7 +2,6 @@ package me.shunia.xsqst_helper.view
 {
 	
 	import flash.display.Sprite;
-	import flash.events.Event;
 	
 	public class Left extends Sprite
 	{
@@ -17,11 +16,8 @@ package me.shunia.xsqst_helper.view
 			
 			_tool = new Left_tools();
 			addChild(_tool);
-			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			_tool.y = _("stage").stageHeight - _tool.height - 5;
 		}
 		
-		protected function onAdded(event:Event):void {
-			_tool.y = stage.stageHeight - _tool.height - 5;
-		}
 	}
 }

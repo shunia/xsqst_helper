@@ -23,6 +23,7 @@ package me.shunia.xsqst_helper.comps
 		
 		protected var _props:Dictionary = null;
 		protected var _states:Array = null;
+		protected var _on:Function = null;
 		protected var _currentState:int = -1;
 		protected var _currentFrame:DisplayObject = null;
 		protected var _labelDisplay:Label = null;
@@ -106,6 +107,16 @@ package me.shunia.xsqst_helper.comps
 		 */		
 		public static const P_HEIGHT:String = "height";
 		
+		public function getProp(k:String):* {
+			var v:* = null;
+			switch (k) {
+				case P_LABEL : 
+					v = hasText ? _labelDisplay.text : "";
+					break;
+			}
+			return v;
+		}
+		
 		protected function clear():void {
 			
 		}
@@ -155,7 +166,6 @@ package me.shunia.xsqst_helper.comps
 			// add to displaylist
 			if (!contains(_labelDisplay)) 
 				addChild(_labelDisplay);
-			trace(_labelDisplay.width, _labelDisplay.textWidth);
 		}
 		
 		/**
@@ -279,8 +289,11 @@ package me.shunia.xsqst_helper.comps
 		protected function onMouseInteraction(e:MouseEvent):void {
 			switch (e.type) {
 				case MouseEvent.ROLL_OUT : 
+					state = STATE_UP;
+					break;
 				case MouseEvent.MOUSE_UP : 
 					state = STATE_UP;
+					if (_on) _on.apply();
 					break;
 				case MouseEvent.ROLL_OVER : 
 					state = STATE_OVER;
@@ -289,6 +302,10 @@ package me.shunia.xsqst_helper.comps
 					state = STATE_DOWN;
 					break;
 			}
+		}
+		
+		public function on(cb:Function):void {
+			_on = cb;
 		}
 		
 		public function set state(value:int):void {

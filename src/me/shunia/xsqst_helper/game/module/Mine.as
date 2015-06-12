@@ -101,39 +101,43 @@ package me.shunia.xsqst_helper.game.module {
 	        _ctx.service.on("sync_mine_queue", function (data:Object):void {
 	            // 是否有正在进行的队列
 	            house.queue = data as Array;
-	            var l:int = house.queue.length;
-	            for (var i:int = l - 1; i >= 0; i--) {
-	                var o:Object = house.queue[i];
-	                // 有sid才说明是一个正在工作的队列，否则说明可以开始队列
-	                if (o.hasOwnProperty("sid") && o["sid"] != 0) {
-	                    if (o.time == 0) {
-	                        _ctx.service.on("mine_queue_harvest", function (data:Object):void {
-	                            for each (var i:Object in data.rewards) {
-	                                // 加到用户身上
-	                                _ctx.user.reward(i);
-	                            }
-	                            report(REPORT_TYPE_HARVEST);
-	                        }, o.id);
-	                    } else {
-	                        // 有坑被占了
-	                        l--;
-	                        report(REPORT_TYPE_JOB_TIME, o.time);
-	                    }
-	                }
-	            }
-	            var j:int = 0, jl:int = house.job.length - 1;
-	            for (j; j < jl && l > 0; j++) {
-	                if (house.job[j] && house.job[j].cost <= digTime) {
-	                    // 有新开工的
-	                    l--;
-	                    _ctx.service.on("mine_queue_add", function (data:Object):void {
-	                        // 通知
-	                        report(REPORT_TYPE_JOB, j);
-	                        // 工坊之后主动同步一次
-	                        sync();
-	                    }, house.job[j].id);
-	                }
-	            }
+				if (house.queue) {
+		            var l:int = house.queue.length;
+		            for (var i:int = l - 1; i >= 0; i--) {
+		                var o:Object = house.queue[i];
+		                // 有sid才说明是一个正在工作的队列，否则说明可以开始队列
+		                if (o.hasOwnProperty("sid") && o["sid"] != 0) {
+		                    if (o.time == 0) {
+		                        _ctx.service.on("mine_queue_harvest", function (data:Object):void {
+		                            for each (var i:Object in data.rewards) {
+		                                // 加到用户身上
+		                                _ctx.game.reward(i);
+		                            }
+		                            report(REPORT_TYPE_HARVEST);
+		                        }, o.id);
+		                    } else {
+		                        // 有坑被占了
+		                        l--;
+		                        report(REPORT_TYPE_JOB_TIME, o.time);
+		                    }
+		                }
+		            }
+				}
+				if (house.job) {
+		            var j:int = 0, jl:int = house.job.length - 1;
+		            for (j; j < jl && l > 0; j++) {
+		                if (house.job[j] && house.job[j].cost <= digTime) {
+		                    // 有新开工的
+		                    l--;
+		                    _ctx.service.on("mine_queue_add", function (data:Object):void {
+		                        // 通知
+		                        report(REPORT_TYPE_JOB, j);
+		                        // 工坊之后主动同步一次
+		                        sync();
+		                    }, house.job[j].id);
+		                }
+		            }
+				}
 	        });
 	    }
 	

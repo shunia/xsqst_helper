@@ -2,8 +2,8 @@
  * Created by qingfenghuang on 2015/5/19.
  */
 package me.shunia.xsqst_helper.game.module {
-	import me.shunia.xsqst_helper.game.Ctx;
-	import me.shunia.xsqst_helper.game.ICtxCls;
+	import me.shunia.xsqst_helper.game.context.Ctx;
+	import me.shunia.xsqst_helper.game.context.ICtxCls;
 	
 	public class BaseModule implements ICtxCls {
 		
